@@ -11,7 +11,7 @@ public interface IDatabase
     public void AddOrder(int Id, int ProductId, uint Amount);
     public IOrder GetOrder(int Id);
     public void DeleteOrder(int Id);
-    public void AddProduct(int Id, string Name, float Price, uint Amount);
+    public void AddProduct(int Id, string Name, double Price, uint Amount);
     public IProduct GetProduct(int Id);
     public void DeleteProduct(int Id);
 }

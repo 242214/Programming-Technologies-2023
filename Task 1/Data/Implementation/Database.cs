@@ -38,11 +38,11 @@ public class Database : IDatabase
     }
     public void DeleteCustomer(int Id)
     {
-        foreach (ICustomer a in CustomerList)
+        for (int i = 0; i < CountCustomerList(); i++)
         {
-            if (a.Id == Id)
+            if (GetCustomer(i).Id == Id)
             {
-                CustomerList.Remove(a);
+                CustomerList.RemoveAt(i);
             }
         }
     }
@@ -65,11 +65,11 @@ public class Database : IDatabase
     }
     public void DeleteOrder(int Id)
     {
-        foreach (IOrder o in OrderList)
+        for (int i = 0; i < CountOrderList(); i++)
         {
-            if (o.Id == Id)
+            if (GetOrder(i).Id == Id)
             {
-                OrderList.Remove(o);
+                OrderList.RemoveAt(i);
             }
         }
     }
@@ -92,11 +92,11 @@ public class Database : IDatabase
     }
     public void DeleteProduct(int Id)
     {
-        foreach (IProduct p in ProductList)
+        for(int i = 0; i < CountProductList(); i++)
         {
-            if (p.Id == Id)
+            if(GetProduct(i).Id == Id)
             {
-                ProductList.Remove(p);
+                ProductList.RemoveAt(i);
             }
         }
     }
