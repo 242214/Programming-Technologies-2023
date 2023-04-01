@@ -1,19 +1,27 @@
-﻿using Data.API;
+﻿using System;
+using Data.API;
 using Data.Implementation;
 using Logic.API;
 namespace Logic.Implementation;
 
-public class Class1
+public abstract class BusinessLogic : IBusinessLogic
 {
-    public void BuyProduct(int Id, int Amount)
-    {
+    private IDatabase database = new Database();
 
+    public override void BuyProduct(int Id, uint Amount)//uzupełnij produkt
+    {
+        for (int i = 0; i < database.CountProductList(); i++)
+        {
+            if (database.GetProduct(i).Id == Id)
+            {
+                database.GetProduct(i).Amount = database.GetProduct(i).Amount + Amount;
+            }
+        }
     }
-    public void SellProduct(int Id, int OrderAmount)//sprzedaj klijentowi
+    public override void SellProduct(int Id, int ProductId, uint OrderAmount)//sprzedaj klijentowi
     {
-        //if (IProduct < OrderAmount) throw new Exeption("Not enough product");
-        if (OrderAmount <= 0) throw new Exception("Product Amount cannot be equal or lesser than 0");
-        //IOrder sell = new Order(0, Id, O);
-
+        if (OrderAmount <= 0) throw new Exception("Product Amount cannot be equal or less than 0");
+        if (database.GetProduct(ProductId).Amount < OrderAmount) throw new Exception("Not enough product");
+        database.AddOrder(Id, ProductId, OrderAmount);
     }
 }
