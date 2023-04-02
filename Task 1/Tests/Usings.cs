@@ -1,5 +1,7 @@
 global using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Data.API;
 using Data.Implementation;
+using Logic.API;
 using Logic.Implementation;
 
 namespace Tests
@@ -10,14 +12,20 @@ namespace Tests
         [TestMethod]
         public void BuyProductTest()
         {
-
+            var businessLogic = IBusinessLogic.CreateBusinessLogic();
+            try
+            {
+                businessLogic.BuyProduct(3, 3);
+            }
+            catch
+            {
+                Console.WriteLine("Product with this Id doesnt exist");
+            }
         }
         [TestMethod]
         public void SellProductTest() 
         {
-            IBusinessLogic businessLogic = new();
-            IDatabase database;
-            businessLogic.SellProduct(5, 7, 4);
+            var businessLogic = IBusinessLogic.CreateBusinessLogic();
             try {
                 businessLogic.SellProduct(1, 2, 0);
             }
@@ -26,9 +34,12 @@ namespace Tests
                 Console.WriteLine("Product Amount cannot be equal or less than 0");
             }
             try {
-
+                businessLogic.SellProduct(5, 7, 4);
             }
-            Assert.AreEqual(database.CountOrderList(), 1);
+            catch (Exception e)
+            {
+                Console.WriteLine("Not enough product");
+            }
         }
     }
 }

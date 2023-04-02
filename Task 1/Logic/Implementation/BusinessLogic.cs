@@ -4,18 +4,24 @@ using Data.Implementation;
 using Logic.API;
 namespace Logic.Implementation;
 
-public abstract class BusinessLogic : IBusinessLogic
+internal class BusinessLogic : IBusinessLogic
 {
-    private IDatabase database;
+    IDatabase database = IDatabase.CreateDatabase();
+    public BusinessLogic() { }
 
     public override void BuyProduct(int Id, uint Amount)//uzupełnij produkt
     {
+        int a = 0;
         for (int i = 0; i < database.CountProductList(); i++)
         {
             if (database.GetProduct(i).Id == Id)
             {
+                a = 1;
                 database.GetProduct(i).Amount = database.GetProduct(i).Amount + Amount;
             }
+        }
+        if(a==0) {
+            throw new Exception("Product with this Id doesnt exist");
         }
     }
     public override void SellProduct(int Id, int ProductId, uint OrderAmount)//sprzedaj klijentowi
