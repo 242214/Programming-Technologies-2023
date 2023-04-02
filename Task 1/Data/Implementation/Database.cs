@@ -1,26 +1,29 @@
 ﻿using Data.API;
 namespace Data.Implementation;
 
-public class Database : IDatabase
+internal class Database : IDatabase
 {
     List<ICustomer> CustomerList = new();
     List<IOrder> OrderList = new();
     List<IProduct> ProductList = new();
 
-    public int CountCustomerList()
+    public Database() { }
+
+
+    public override int CountCustomerList()
     {
         return CustomerList.Count();
     }
-    public int CountOrderList()
+    public override int CountOrderList()
     {
         return OrderList.Count();
     }
-    public int CountProductList()
+    public override int CountProductList()
     {
         return ProductList.Count();
     }
 
-    public void AddCustomer(int Id, string FirstName, string LastName)
+    public override void AddCustomer(int Id, string FirstName, string LastName)
     {
         ICustomer a = new Customer(Id, FirstName, LastName);
         for (int i = 0; i < CountCustomerList(); i++)
@@ -32,11 +35,11 @@ public class Database : IDatabase
         }
         CustomerList.Add(a);
     }
-    public ICustomer GetCustomer(int Id)
+    public override ICustomer GetCustomer(int Id)
     {
         return CustomerList[Id];
     }
-    public void DeleteCustomer(int Id)
+    public override void DeleteCustomer(int Id)
     {
         for (int i = 0; i < CountCustomerList(); i++)
         {
@@ -47,7 +50,7 @@ public class Database : IDatabase
         }
     }
 
-    public void AddOrder(int Id, int ProductId, uint Amount)
+    public override void AddOrder(int Id, int ProductId, uint Amount)
     {
         IOrder o = new Order(Id, ProductId, Amount);
         for (int i = 0; i < CountOrderList(); i++)
@@ -59,11 +62,11 @@ public class Database : IDatabase
         }
         OrderList.Add(o);
     }
-    public IOrder GetOrder(int Id)
+    public override IOrder GetOrder(int Id)
     {
         return OrderList[Id];
     }
-    public void DeleteOrder(int Id)
+    public override void DeleteOrder(int Id)
     {
         for (int i = 0; i < CountOrderList(); i++)
         {
@@ -74,7 +77,7 @@ public class Database : IDatabase
         }
     }
 
-    public void AddProduct(int Id, string Name, float Price, uint Amount)
+    public override void AddProduct(int Id, string Name, double Price, uint Amount)
     {
         IProduct p = new Product(Id, Name, Price, Amount);
         for (int i = 0; i < CountProductList(); i++)
@@ -86,11 +89,15 @@ public class Database : IDatabase
         }
         ProductList.Add(p);
     }
-    public IProduct GetProduct(int Id)
+    public override IProduct GetProduct(int Id)
     {
         return ProductList[Id];
     }
-    public void DeleteProduct(int Id)
+    public override List<IProduct> GetProductList()
+    {
+        return ProductList;
+    }
+    public override void DeleteProduct(int Id)
     {
         for(int i = 0; i < CountProductList(); i++)
         {

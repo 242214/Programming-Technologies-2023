@@ -6,7 +6,7 @@
 namespace Data.Implementation;
 using Data.API;
 
-public class Customer : ICustomer
+internal class Customer : ICustomer
 {
     public int Id { get; set; }
     public string FirstName { get; set; }

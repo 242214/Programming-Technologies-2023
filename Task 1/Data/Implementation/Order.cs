@@ -1,7 +1,7 @@
 ﻿namespace Data.Implementation;
 using Data.API;
 
-public class Order : IOrder
+internal class Order : IOrder
 {
     public int Id { get; set; }
     public int ProductId { get; set; }
