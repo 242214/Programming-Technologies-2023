@@ -6,7 +6,7 @@ namespace Logic.Implementation;
 
 public abstract class BusinessLogic : IBusinessLogic
 {
-    private IDatabase database = new Database();
+    private IDatabase database;
 
     public override void BuyProduct(int Id, uint Amount)//uzupełnij produkt
     {
