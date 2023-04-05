@@ -22,12 +22,12 @@ internal class DataRepository : IDataRepository
     }
     public override IState GetState(int Id)
     {
-        return StateList(Id);
+        return dataContext.StateList[Id];
     }
 
-    public override void AddState(int Id, uint Amount, bool isAvailable)
+    public override void AddState(int Id, int ProductId, uint Amount, bool isAvailable)
     {
-        IState s = new State(Id, Amount, isAvailable);
+        IState s = new State(Id, ProductId, Amount, isAvailable);
         for (int i = 0; i < CountProductList(); i++)
         {
             if(GetState(i).Id == Id)
@@ -35,7 +35,7 @@ internal class DataRepository : IDataRepository
                 throw new InvalidOperationException();
             }
         }
-        StateList.Add(s);
+        dataContext.StateList.Add(s);
     }
 
     public override void DeleteState(int Id)
@@ -44,9 +44,15 @@ internal class DataRepository : IDataRepository
         {
             if(GetState(i).Id == Id)
             {
-                StateList.RemoveAt(i);
+                dataContext.StateList.RemoveAt(i);
             }
         }
+    }
+
+    public override void ChangeAvaliable(int i)
+    {
+        if (!dataContext.StateList[i].isAvailable) dataContext.StateList[i].isAvailable = true;
+        else dataContext.StateList[i].isAvailable = false;
     }
 
     public override void AddCustomer(int Id, string FirstName, string LastName)

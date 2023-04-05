@@ -14,11 +14,11 @@ internal class BusinessLogic : IBusinessLogic
         int a = 0;
         for (int i = 0; i < database.CountProductList(); i++)
         {
-            if (database.GetProduct(i).Id == Id)
+            if (database.GetState(i).ProductId == Id)
             {
                 a = 1;
-                //database.GetState(i).Amount = database.GetState(i).Amount + Amount;
-                //if(database.GetState(i).Amount > 0) {}
+                database.GetState(i).Amount = database.GetState(i).Amount + Amount;
+                if(database.GetState(i).Amount > 0) database.GetState(i).isAvailable = true;
             }
         }
         if(a==0) {
@@ -28,12 +28,12 @@ internal class BusinessLogic : IBusinessLogic
     public override void SellProduct(int Id, int ProductId, uint OrderAmount, int UserId) //sprzedaj klijentowi
     {
         if (OrderAmount <= 0) throw new Exception("Product Amount cannot be equal or less than 0");
-        //if (database.GetProduct(ProductId).Amount < OrderAmount) throw new Exception("Not enough product");
+        if (!database.GetState(ProductId).isAvailable) throw new Exception("Not enough product");
         database.AddOrder(Id, ProductId, OrderAmount, UserId);
-        //remove product from the shop
+        database.GetState(ProductId).Amount = database.GetState(ProductId).Amount - OrderAmount;
+        if (database.GetState(ProductId).Amount > 0) database.GetState(ProductId).isAvailable = true;
     }
 }
 //Lista do zrobienia
 //- TestLogic nie powinnien używać "uing Data.Implementation" i "using Data.API" zamiast tego trzeba stworzyć clasę jak Data w Test
-//- Przenieść Amount z Product do nowej classy State, która posiada też zmienną typu bool o nazwie Avaliable, jeśli product > 0 --> Avaliable = true, else Avaliable = false
 
