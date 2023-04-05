@@ -1,32 +1,32 @@
 ﻿using Data.API;
 namespace Data.Implementation;
 
-internal class Database : IDataRepository
+internal class DataRepository : IDataRepository
 {
-    public Database() { }
-
+    //public DataRepository() { }
+    private readonly DataContext datacontext = new DataContext();
 
     public override int CountCustomerList()
     {
-        return CustomerList.Count();
+        return datacontext.CustomerList.Count();
     }
     public override int CountOrderList()
     {
-        return OrderList.Count();
+        return datacontext.OrderList.Count();
     }
     public override int CountProductList()
     {
-        return ProductList.Count();
+        return datacontext.ProductList.Count();
     }
     
     public override IState GetState(int Id)
     {
-        return StateList(Id);
+        return datacontext.StateList[Id];
     }
 
     public override int CountStateList()
     {
-        return StateList.Count();
+        return datacontext.StateList.Count();
     }
 
     public override void AddState(int Id, int ProductId, uint Amount, bool isAvailable)
@@ -39,7 +39,7 @@ internal class Database : IDataRepository
                 throw new InvalidOperationException();
             }
         }
-        StateList.Add(s);
+        datacontext.StateList.Add(s);
     }
 
     public override void DeleteState(int Id)
@@ -48,7 +48,7 @@ internal class Database : IDataRepository
         {
             if(GetState(i).Id == Id)
             {
-                StateList.RemoveAt(i);
+                datacontext.StateList.RemoveAt(i);
             }
         }
     }
@@ -63,11 +63,11 @@ internal class Database : IDataRepository
                 throw new InvalidOperationException();
             }
         }
-        CustomerList.Add(a);
+        datacontext.CustomerList.Add(a);
     }
     public override ICustomer GetCustomer(int Id)
     {
-        return CustomerList[Id];
+        return datacontext.CustomerList[Id];
     }
     public override void DeleteCustomer(int Id)
     {
@@ -75,7 +75,7 @@ internal class Database : IDataRepository
         {
             if (GetCustomer(i).Id == Id)
             {
-                CustomerList.RemoveAt(i);
+                datacontext.CustomerList.RemoveAt(i);
             }
         }
     }
@@ -90,11 +90,11 @@ internal class Database : IDataRepository
                 throw new InvalidOperationException();
             }
         }
-        OrderList.Add(o);
+        datacontext.OrderList.Add(o);
     }
     public override IOrder GetOrder(int Id)
     {
-        return OrderList[Id];
+        return datacontext.OrderList[Id];
     }
     public override void DeleteOrder(int Id)
     {
@@ -102,14 +102,14 @@ internal class Database : IDataRepository
         {
             if (GetOrder(i).Id == Id)
             {
-                OrderList.RemoveAt(i);
+                datacontext.OrderList.RemoveAt(i);
             }
         }
     }
 
-    public override void AddProduct(int Id, string Name, double Price, uint Amount)
+    public override void AddProduct(int Id, string Name, double Price)
     {
-        IProduct p = new Product(Id, Name, Price, Amount);
+        IProduct p = new Product(Id, Name, Price);
         for (int i = 0; i < CountProductList(); i++)
         {
             if (GetProduct(i).Id == Id)
@@ -117,15 +117,15 @@ internal class Database : IDataRepository
                 throw new InvalidOperationException();
             }
         }
-        ProductList.Add(p);
+        datacontext.ProductList.Add(p);
     }
     public override IProduct GetProduct(int Id)
     {
-        return ProductList[Id];
+        return datacontext.ProductList[Id];
     }
     public override List<IProduct> GetProductList()
     {
-        return ProductList;
+        return datacontext.ProductList;
     }
     public override void DeleteProduct(int Id)
     {
@@ -133,7 +133,7 @@ internal class Database : IDataRepository
         {
             if(GetProduct(i).Id == Id)
             {
-                ProductList.RemoveAt(i);
+                datacontext.ProductList.RemoveAt(i);
             }
         }
     }

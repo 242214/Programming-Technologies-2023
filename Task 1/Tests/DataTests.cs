@@ -67,7 +67,7 @@ namespace Tests
         }
          [TestMethod]
         public void CheckAddingDeletingState()
-        {
+        { 
             var database = IDataRepository.CreateDatabase();
             database.AddState(1, 1, 1, true);
             Assert.AreEqual(database.CountStateList(), 1);
@@ -81,7 +81,7 @@ namespace Tests
             }
             Assert.AreEqual(database.CountStateList(), 1);
             database.DeleteState(1);
-            Assert.AreEqual(database.CountStatetList(), 0);
+            Assert.AreEqual(database.CountStateList(), 0);
         }
     }
 }
