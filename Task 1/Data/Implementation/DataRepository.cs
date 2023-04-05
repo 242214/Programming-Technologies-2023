@@ -1,26 +1,24 @@
 ﻿using Data.API;
 namespace Data.Implementation;
 
-internal class Database : IDatabase
+internal class DataRepository : IDataRepository
 {
-    List<ICustomer> CustomerList = new();
-    List<IOrder> OrderList = new();
-    List<IProduct> ProductList = new();
 
-    public Database() { }
+    public DataRepository() { }
+    private readonly DataContext dataContext = new DataContext();
 
 
     public override int CountCustomerList()
     {
-        return CustomerList.Count();
+        return dataContext.CustomerList.Count();
     }
     public override int CountOrderList()
     {
-        return OrderList.Count();
+        return dataContext.OrderList.Count();
     }
     public override int CountProductList()
     {
-        return ProductList.Count();
+        return dataContext.ProductList.Count();
     }
 
     public override void AddCustomer(int Id, string FirstName, string LastName)
@@ -33,11 +31,11 @@ internal class Database : IDatabase
                 throw new InvalidOperationException();
             }
         }
-        CustomerList.Add(a);
+        dataContext.CustomerList.Add(a);
     }
     public override ICustomer GetCustomer(int Id)
     {
-        return CustomerList[Id];
+        return dataContext.CustomerList[Id];
     }
     public override void DeleteCustomer(int Id)
     {
@@ -45,14 +43,14 @@ internal class Database : IDatabase
         {
             if (GetCustomer(i).Id == Id)
             {
-                CustomerList.RemoveAt(i);
+                dataContext.CustomerList.RemoveAt(i);
             }
         }
     }
 
-    public override void AddOrder(int Id, int ProductId, uint Amount)
+    public override void AddOrder(int Id, int ProductId, uint Amount, int UserId)
     {
-        IOrder o = new Order(Id, ProductId, Amount);
+        IOrder o = new Order(Id, ProductId, Amount, UserId);
         for (int i = 0; i < CountOrderList(); i++)
         {
             if (GetOrder(i).Id == Id)
@@ -60,11 +58,11 @@ internal class Database : IDatabase
                 throw new InvalidOperationException();
             }
         }
-        OrderList.Add(o);
+        dataContext.OrderList.Add(o);
     }
     public override IOrder GetOrder(int Id)
     {
-        return OrderList[Id];
+        return dataContext.OrderList[Id];
     }
     public override void DeleteOrder(int Id)
     {
@@ -72,7 +70,7 @@ internal class Database : IDatabase
         {
             if (GetOrder(i).Id == Id)
             {
-                OrderList.RemoveAt(i);
+                dataContext.OrderList.RemoveAt(i);
             }
         }
     }
@@ -87,15 +85,15 @@ internal class Database : IDatabase
                 throw new InvalidOperationException();
             }
         }
-        ProductList.Add(p);
+        dataContext.ProductList.Add(p);
     }
     public override IProduct GetProduct(int Id)
     {
-        return ProductList[Id];
+        return dataContext.ProductList[Id];
     }
     public override List<IProduct> GetProductList()
     {
-        return ProductList;
+        return dataContext.ProductList;
     }
     public override void DeleteProduct(int Id)
     {
@@ -103,7 +101,7 @@ internal class Database : IDatabase
         {
             if(GetProduct(i).Id == Id)
             {
-                ProductList.RemoveAt(i);
+                dataContext.ProductList.RemoveAt(i);
             }
         }
     }

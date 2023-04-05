@@ -13,7 +13,7 @@ namespace Tests
         [TestMethod]
         public void CheckAddinggCustomer()
         {
-            var database = IDatabase.CreateDatabase();
+            var database = IDataRepository.CreateDatabase();
             database.AddCustomer(1, "John", "John");
             Assert.AreEqual(database.CountCustomerList(), 1);
             try
@@ -32,12 +32,12 @@ namespace Tests
         [TestMethod]
         public void CheckAddingDeletingOrder()
         {
-            var database = IDatabase.CreateDatabase();
-            database.AddOrder(1, 1, 2);
+            var database = IDataRepository.CreateDatabase();
+            database.AddOrder(1, 1, 2, 1);
             Assert.AreEqual(database.CountOrderList(), 1);
             try
             {
-                database.AddOrder(1, 4, 2);
+                database.AddOrder(1, 4, 2, 1);
             }
             catch (InvalidOperationException e)
             {
@@ -51,7 +51,7 @@ namespace Tests
         [TestMethod]
         public void CheckAddingDeletingProduct()
         {
-            var database = IDatabase.CreateDatabase();
+            var database = IDataRepository.CreateDatabase();
             database.AddProduct(1, "Red Apple", 0.5, 100);
             Assert.AreEqual(database.CountProductList(), 1);
             try
