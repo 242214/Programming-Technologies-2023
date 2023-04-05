@@ -13,10 +13,13 @@ public abstract class IDataRepository
     public abstract void AddOrder(int Id, int ProductId, uint Amount, int UserId);
     public abstract IOrder GetOrder(int Id);
     public abstract void DeleteOrder(int Id);
-    public abstract void AddProduct(int Id, string Name, double Price, uint Amount);
+    public abstract void AddProduct(int Id, string Name, double Price);
     public abstract IProduct GetProduct(int Id);
     public abstract void DeleteProduct(int Id);
     public abstract List<IProduct> GetProductList();
+    public abstract IState GetState(int Id);
+    public abstract void AddState(int Id, uint Amount, bool isAvailable);
+    public abstract void DeleteState(int Id);
 
     public static IDataRepository CreateDatabase()
     {

@@ -52,11 +52,11 @@ namespace Tests
         public void CheckAddingDeletingProduct()
         {
             var database = IDataRepository.CreateDatabase();
-            database.AddProduct(1, "Red Apple", 0.5, 100);
+            database.AddProduct(1, "Red Apple", 0.5);
             Assert.AreEqual(database.CountProductList(), 1);
             try
             {
-                database.AddProduct(1, "Bread", 2.5, 500);
+                database.AddProduct(1, "Bread", 2.5);
             }
             catch (InvalidOperationException e)
             {

@@ -75,9 +75,9 @@ internal class DataRepository : IDataRepository
         }
     }
 
-    public override void AddProduct(int Id, string Name, double Price, uint Amount)
+    public override void AddProduct(int Id, string Name, double Price)
     {
-        IProduct p = new Product(Id, Name, Price, Amount);
+        IProduct p = new Product(Id, Name, Price);
         for (int i = 0; i < CountProductList(); i++)
         {
             if (GetProduct(i).Id == Id)

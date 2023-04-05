@@ -17,7 +17,8 @@ internal class BusinessLogic : IBusinessLogic
             if (database.GetProduct(i).Id == Id)
             {
                 a = 1;
-                database.GetProduct(i).Amount = database.GetProduct(i).Amount + Amount;
+                //database.GetState(i).Amount = database.GetState(i).Amount + Amount;
+                //if(database.GetState(i).Amount > 0) {}
             }
         }
         if(a==0) {
@@ -27,7 +28,7 @@ internal class BusinessLogic : IBusinessLogic
     public override void SellProduct(int Id, int ProductId, uint OrderAmount, int UserId) //sprzedaj klijentowi
     {
         if (OrderAmount <= 0) throw new Exception("Product Amount cannot be equal or less than 0");
-        if (database.GetProduct(ProductId).Amount < OrderAmount) throw new Exception("Not enough product");
+        //if (database.GetProduct(ProductId).Amount < OrderAmount) throw new Exception("Not enough product");
         database.AddOrder(Id, ProductId, OrderAmount, UserId);
         //remove product from the shop
     }
