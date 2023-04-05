@@ -10,7 +10,7 @@ namespace Tests
     public class CheckAddingObjects
     {
         [TestMethod]
-        public void CheckAddinggCustomer()
+        public void CheckAddingDeletingCustomer()
         {
             var database = IDataRepository.CreateDatabase();
             database.AddCustomer(1, "John", "John");

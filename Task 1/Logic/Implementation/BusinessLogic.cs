@@ -35,6 +35,4 @@ internal class BusinessLogic : IBusinessLogic
         else database.GetState(ProductId).isAvailable = false;
     }
 }
-//Lista do zrobienia
-//- TestLogic nie powinnien używać "uing Data.Implementation" i "using Data.API" zamiast tego trzeba stworzyć clasę jak Data w Test
 
