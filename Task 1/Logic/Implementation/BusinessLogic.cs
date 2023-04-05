@@ -32,6 +32,7 @@ internal class BusinessLogic : IBusinessLogic
         database.AddOrder(Id, ProductId, OrderAmount, UserId);
         database.GetState(ProductId).Amount = database.GetState(ProductId).Amount - OrderAmount;
         if (database.GetState(ProductId).Amount > 0) database.GetState(ProductId).isAvailable = true;
+        else database.GetState(ProductId).isAvailable = false;
     }
 }
 //Lista do zrobienia

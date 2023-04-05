@@ -49,12 +49,6 @@ internal class DataRepository : IDataRepository
         }
     }
 
-    public override void ChangeAvaliable(int i)
-    {
-        if (!dataContext.StateList[i].isAvailable) dataContext.StateList[i].isAvailable = true;
-        else dataContext.StateList[i].isAvailable = false;
-    }
-
     public override void AddCustomer(int Id, string FirstName, string LastName)
     {
         ICustomer a = new Customer(Id, FirstName, LastName);
