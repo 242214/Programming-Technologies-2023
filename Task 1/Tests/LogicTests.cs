@@ -1,9 +1,6 @@
 global using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Data.API;
-using Data.Implementation;
 using Logic.API;
 using Logic.Implementation;
-//od poprawy dodaj data test, nie u¿ywaj "using Data"
 namespace Tests
 {
     [TestClass]

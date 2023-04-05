@@ -3,7 +3,6 @@ using System;
 using Data;
 using Data.API;
 using Data.Implementation;
-using Logic.Implementation;
 
 namespace Tests
 {
@@ -65,6 +64,24 @@ namespace Tests
             Assert.AreEqual(database.CountProductList(), 1);
             database.DeleteProduct(1);
             Assert.AreEqual(database.CountProductList(), 0);
+        }
+         [TestMethod]
+        public void CheckAddingDeletingState()
+        {
+            var database = IDataRepository.CreateDatabase();
+            database.AddState(1, 1, 1, true);
+            Assert.AreEqual(database.CountStateList(), 1);
+            try
+            {
+                database.AddState(1, 1, 1, false);
+            }
+            catch (InvalidOperationException e)
+            {
+                Console.WriteLine("Trying to add state with the same id");
+            }
+            Assert.AreEqual(database.CountStateList(), 1);
+            database.DeleteState(1);
+            Assert.AreEqual(database.CountStatetList(), 0);
         }
     }
 }

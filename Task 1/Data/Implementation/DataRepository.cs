@@ -1,58 +1,56 @@
 ﻿using Data.API;
 namespace Data.Implementation;
 
-internal class DataRepository : IDataRepository
+internal class Database : IDataRepository
 {
-
-    public DataRepository() { }
-    private readonly DataContext dataContext = new DataContext();
+    public Database() { }
 
 
     public override int CountCustomerList()
     {
-        return dataContext.CustomerList.Count();
+        return CustomerList.Count();
     }
     public override int CountOrderList()
     {
-        return dataContext.OrderList.Count();
+        return OrderList.Count();
     }
     public override int CountProductList()
     {
-        return dataContext.ProductList.Count();
+        return ProductList.Count();
     }
+    
     public override IState GetState(int Id)
     {
-        return dataContext.StateList[Id];
+        return StateList(Id);
+    }
+
+    public override int CountStateList()
+    {
+        return StateList.Count();
     }
 
     public override void AddState(int Id, int ProductId, uint Amount, bool isAvailable)
     {
         IState s = new State(Id, ProductId, Amount, isAvailable);
-        for (int i = 0; i < CountProductList(); i++)
+        for (int i = 0; i < CountStateList(); i++)
         {
             if(GetState(i).Id == Id)
             {
                 throw new InvalidOperationException();
             }
         }
-        dataContext.StateList.Add(s);
+        StateList.Add(s);
     }
 
     public override void DeleteState(int Id)
     {
-        for(int i = 0; i < CountProductList(); i++)
+        for(int i = 0; i < CountStateList(); i++)
         {
             if(GetState(i).Id == Id)
             {
-                dataContext.StateList.RemoveAt(i);
+                StateList.RemoveAt(i);
             }
         }
-    }
-
-    public override void ChangeAvaliable(int i)
-    {
-        if (!dataContext.StateList[i].isAvailable) dataContext.StateList[i].isAvailable = true;
-        else dataContext.StateList[i].isAvailable = false;
     }
 
     public override void AddCustomer(int Id, string FirstName, string LastName)
@@ -65,11 +63,11 @@ internal class DataRepository : IDataRepository
                 throw new InvalidOperationException();
             }
         }
-        dataContext.CustomerList.Add(a);
+        CustomerList.Add(a);
     }
     public override ICustomer GetCustomer(int Id)
     {
-        return dataContext.CustomerList[Id];
+        return CustomerList[Id];
     }
     public override void DeleteCustomer(int Id)
     {
@@ -77,7 +75,7 @@ internal class DataRepository : IDataRepository
         {
             if (GetCustomer(i).Id == Id)
             {
-                dataContext.CustomerList.RemoveAt(i);
+                CustomerList.RemoveAt(i);
             }
         }
     }
@@ -92,11 +90,11 @@ internal class DataRepository : IDataRepository
                 throw new InvalidOperationException();
             }
         }
-        dataContext.OrderList.Add(o);
+        OrderList.Add(o);
     }
     public override IOrder GetOrder(int Id)
     {
-        return dataContext.OrderList[Id];
+        return OrderList[Id];
     }
     public override void DeleteOrder(int Id)
     {
@@ -104,14 +102,14 @@ internal class DataRepository : IDataRepository
         {
             if (GetOrder(i).Id == Id)
             {
-                dataContext.OrderList.RemoveAt(i);
+                OrderList.RemoveAt(i);
             }
         }
     }
 
-    public override void AddProduct(int Id, string Name, double Price)
+    public override void AddProduct(int Id, string Name, double Price, uint Amount)
     {
-        IProduct p = new Product(Id, Name, Price);
+        IProduct p = new Product(Id, Name, Price, Amount);
         for (int i = 0; i < CountProductList(); i++)
         {
             if (GetProduct(i).Id == Id)
@@ -119,15 +117,15 @@ internal class DataRepository : IDataRepository
                 throw new InvalidOperationException();
             }
         }
-        dataContext.ProductList.Add(p);
+        ProductList.Add(p);
     }
     public override IProduct GetProduct(int Id)
     {
-        return dataContext.ProductList[Id];
+        return ProductList[Id];
     }
     public override List<IProduct> GetProductList()
     {
-        return dataContext.ProductList;
+        return ProductList;
     }
     public override void DeleteProduct(int Id)
     {
@@ -135,7 +133,7 @@ internal class DataRepository : IDataRepository
         {
             if(GetProduct(i).Id == Id)
             {
-                dataContext.ProductList.RemoveAt(i);
+                ProductList.RemoveAt(i);
             }
         }
     }
