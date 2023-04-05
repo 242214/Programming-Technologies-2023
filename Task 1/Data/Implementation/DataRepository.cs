@@ -20,6 +20,34 @@ internal class DataRepository : IDataRepository
     {
         return dataContext.ProductList.Count();
     }
+    public override IState GetState(int Id)
+    {
+        return StateList(Id);
+    }
+
+    public override void AddState(int Id, uint Amount, bool isAvailable)
+    {
+        IState s = new State(Id, Amount, isAvailable);
+        for (int i = 0; i < CountProductList(); i++)
+        {
+            if(GetState(i).Id == Id)
+            {
+                throw new InvalidOperationException();
+            }
+        }
+        StateList.Add(s);
+    }
+
+    public override void DeleteState(int Id)
+    {
+        for(int i = 0; i < CountProductList(); i++)
+        {
+            if(GetState(i).Id == Id)
+            {
+                StateList.RemoveAt(i);
+            }
+        }
+    }
 
     public override void AddCustomer(int Id, string FirstName, string LastName)
     {
