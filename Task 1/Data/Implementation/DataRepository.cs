@@ -80,12 +80,11 @@ internal class DataRepository : IDataRepository
         }
     }
 
-    public override void AddOrder(int Id, int ProductId, uint Amount, int UserId)
+    public override void AddOrder(IOrder o)
     {
-        IOrder o = new Order(Id, ProductId, Amount, UserId);
         for (int i = 0; i < CountOrderList(); i++)
         {
-            if (GetOrder(i).Id == Id)
+            if (GetOrder(i).Id == o.Id)
             {
                 throw new InvalidOperationException();
             }
