@@ -3,6 +3,7 @@ using System;
 using Data;
 using Data.API;
 using Data.Implementation;
+using Logic.Implementation;
 
 namespace Tests
 {
@@ -32,11 +33,13 @@ namespace Tests
         public void CheckAddingDeletingOrder()
         {
             var database = IDataRepository.CreateDatabase();
-            database.AddOrder(1, 1, 2, 1);
+            ISell sell1 = new Sell(1, 1, 2, 1);
+            database.AddOrder(sell1);
             Assert.AreEqual(database.CountOrderList(), 1);
             try
             {
-                database.AddOrder(1, 4, 2, 1);
+                ISell sell2 = new Sell(1, 4, 2, 1);
+                database.AddOrder(sell2);
             }
             catch (InvalidOperationException e)
             {

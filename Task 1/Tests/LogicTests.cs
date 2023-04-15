@@ -12,7 +12,7 @@ namespace Tests
             var businessLogic = IBusinessLogic.CreateBusinessLogic();
             try
             {
-                businessLogic.BuyProduct(3, 3);
+                businessLogic.BuyProduct(3, 3, 1);
             }
             catch
             {

@@ -1,10 +1,8 @@
-using System;
 using Data.API;
-using Data.Implementation;
-using Logic.API;
 namespace Logic.Implementation;
 
-internal class Sell : ISell {
+public class Sell : ISell
+{
     public int Id { get; set; }
     public int ProductId { get; set; }
     public uint Amount { get; set; }
