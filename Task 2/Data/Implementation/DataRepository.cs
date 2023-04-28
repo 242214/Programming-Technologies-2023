@@ -31,7 +31,7 @@ internal class DataRepository : IDataRepository
 
     public override void AddState(int Id, int ProductId, uint Amount, bool isAvailable)
     {
-        IState s = new State(Id, ProductId, Amount, isAvailable);
+        //IState s = new State(Id, ProductId, Amount, isAvailable);
         for (int i = 0; i < CountStateList(); i++)
         {
             if(GetState(i).Id == Id)
@@ -39,7 +39,7 @@ internal class DataRepository : IDataRepository
                 throw new InvalidOperationException();
             }
         }
-        datacontext.StateList.Add(s);
+        //datacontext.StateList.Add(s);
     }
 
     public override void DeleteState(int Id)
@@ -55,7 +55,7 @@ internal class DataRepository : IDataRepository
 
     public override void AddCustomer(int Id, string FirstName, string LastName)
     {
-        ICustomer a = new Customer(Id, FirstName, LastName);
+        //ICustomer a = new Customer(Id, FirstName, LastName);
         for (int i = 0; i < CountCustomerList(); i++)
         {
             if (GetCustomer(i).Id == Id)
@@ -63,7 +63,7 @@ internal class DataRepository : IDataRepository
                 throw new InvalidOperationException();
             }
         }
-        datacontext.CustomerList.Add(a);
+        //datacontext.CustomerList.Add(a);
     }
     public override ICustomer GetCustomer(int Id)
     {
@@ -108,7 +108,7 @@ internal class DataRepository : IDataRepository
 
     public override void AddProduct(int Id, string Name, double Price)
     {
-        IProduct p = new Product(Id, Name, Price);
+        //IProduct p = new Product(Id, Name, Price);
         for (int i = 0; i < CountProductList(); i++)
         {
             if (GetProduct(i).Id == Id)
@@ -116,7 +116,7 @@ internal class DataRepository : IDataRepository
                 throw new InvalidOperationException();
             }
         }
-        datacontext.ProductList.Add(p);
+        //datacontext.ProductList.Add(p);
     }
     public override IProduct GetProduct(int Id)
     {
