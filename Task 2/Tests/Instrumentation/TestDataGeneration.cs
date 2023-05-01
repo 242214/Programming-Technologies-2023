@@ -20,7 +20,7 @@ namespace Tests.Instrumentation
 
       private class Customer : ICustomer
       {
-        public Customer(in Id, string firstName, string lastName)
+        public Customer(int Id, string firstName, string lastName)
         {
           this.Id = Id;
           FirstName = firstName;
