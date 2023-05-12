@@ -1,4 +1,4 @@
-﻿namespace Service.API
+namespace Service.API;
 
 public interface ICustomer
 {
