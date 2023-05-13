@@ -9,7 +9,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Data.Implementation
+namespace Data
 {
 	using System.Data.Linq;
 	using System.Data.Linq.Mapping;
@@ -20,18 +20,18 @@ namespace Data.Implementation
 	using System.Linq.Expressions;
 	using System.ComponentModel;
 	using System;
-    using Data.API;
-
-    public partial class LinqToSqlDataContext : IDataContext //System.Data.Linq.DataContext
+	
+	
+	public partial class LinqToSqlDataContext : System.Data.Linq.DataContext
 	{
 		
 		private static System.Data.Linq.Mapping.MappingSource mappingSource = new AttributeMappingSource();
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertCustomer(Customer instance);
-    partial void UpdateCustomer(Customer instance);
-    partial void DeleteCustomer(Customer instance);
+    partial void InsertCUSTOMER(CUSTOMER instance);
+    partial void UpdateCUSTOMER(CUSTOMER instance);
+    partial void DeleteCUSTOMER(CUSTOMER instance);
     #endregion
 		
 		public LinqToSqlDataContext(string connection) : 
@@ -58,22 +58,22 @@ namespace Data.Implementation
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<Customer> Customers
+		public System.Data.Linq.Table<CUSTOMER> CUSTOMERs
 		{
 			get
 			{
-				return this.GetTable<Customer>();
+				return this.GetTable<CUSTOMER>();
 			}
 		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="")]
-	public partial class Customer : INotifyPropertyChanging, INotifyPropertyChanged
+	public partial class CUSTOMER : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int (System.int) _Id;
+		private int _Id;
 		
 		private string _FirstName;
 		
@@ -83,7 +83,7 @@ namespace Data.Implementation
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnIdChanging(int (System.int) value);
+    partial void OnIdChanging(int value);
     partial void OnIdChanged();
     partial void OnFirstNameChanging(string value);
     partial void OnFirstNameChanged();
@@ -91,13 +91,13 @@ namespace Data.Implementation
     partial void OnLastNameChanged();
     #endregion
 		
-		public Customer()
+		public CUSTOMER()
 		{
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", CanBeNull=false, IsPrimaryKey=true)]
-		public int (System.int) Id
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", IsPrimaryKey=true)]
+		public int Id
 		{
 			get
 			{

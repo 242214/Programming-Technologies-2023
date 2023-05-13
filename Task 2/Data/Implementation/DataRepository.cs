@@ -5,7 +5,12 @@ namespace Data.Implementation;
 internal class DataRepository : IDataRepository
 {
     //public DataRepository() { }
-    LinqToSqlDataContext dc = new LinqToSqlDataContext();
+    //LinqToSqlDataContext dc = new LinqToSqlDataContext();
+    private LinqToSqlDataContext dc;
+    //public DataRepository()
+    //{
+    //    dc = new LinqToSqlDataContext();
+    //}
     private readonly DataContext datacontext = new DataContext();
 
     public override int CountCustomerList()
@@ -66,23 +71,22 @@ internal class DataRepository : IDataRepository
         //    }
         //}
         //datacontext.CustomerList.Add(a);
-        var check = from p in dc.Customers
-                where p.id == Id
-                select p;
-        if(check != null)
+        CUSTOMER customerr = dc.CUSTOMERs.Single(CUSTOMER => CUSTOMER.Id == Id);
+        if (customerr != null)
         {
             throw new InvalidOperationException();
         }
-        dc.Customers.id.Add(Id);
-        dc.Customers.firstName.Add(FirstName);
-        dc.Customers.lastName.Add(LastName);
+        CUSTOMER customer = new CUSTOMER();
+        customer.Id = Id;
+        customer.FirstName = FirstName;
+        customer.LastName = LastName;
+        dc.CUSTOMERs.InsertOnSubmit(customer);
+        dc.SubmitChanges();
     }
     public override ICustomer GetCustomer(int Id)
     {
-        var check = from p in dc.Customers
-                    where p.id == Id
-                    select p;
-        return check;
+        CUSTOMER customer = dc.CUSTOMERs.Single(CUSTOMER => CUSTOMER.Id == Id);
+        return (ICustomer)customer;
         //return datacontext.CustomerList[Id];
     }
     public override void DeleteCustomer(int Id)
@@ -94,12 +98,9 @@ internal class DataRepository : IDataRepository
         //        datacontext.CustomerList.RemoveAt(i);
         //    }
         //}
-        var check = from p in dc.Customers
-                    where p.id == Id
-                    select p;
-        dc.Customers.id.Remove(check);
-        dc.Customers.firstName.Remove(check);
-        dc.Customers.lastName.Remove(check);
+        CUSTOMER customer = dc.CUSTOMERs.Single(CUSTOMER => CUSTOMER.Id == Id);
+        dc.CUSTOMERs.DeleteOnSubmit(customer);
+        dc.SubmitChanges();
     }
 
     public override void AddOrder(IOrder o)

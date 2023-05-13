@@ -13,6 +13,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.5" />
+    <PackageReference Include="Mindbox.Data.Linq" Version="10.5.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -33,10 +34,6 @@
       <LastGenOutput>LinqToSql.designer.cs</LastGenOutput>
       <Generator>MSLinqToSQLGenerator</Generator>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Database\" />
   </ItemGroup>
 
 </Project>
