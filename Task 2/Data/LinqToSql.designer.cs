@@ -41,9 +41,8 @@ namespace Data
     partial void InsertSTATE(STATE instance);
     partial void UpdateSTATE(STATE instance);
     partial void DeleteSTATE(STATE instance);
-    #endregion
-		
-		public LinqToSqlDataContext(string connection) : 
+        #endregion
+        public LinqToSqlDataContext(string connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
@@ -66,8 +65,12 @@ namespace Data
 		{
 			OnCreated();
 		}
-		
-		public System.Data.Linq.Table<CUSTOMER> CUSTOMERs
+
+        //public LinqToSqlDataContext()
+        //{
+        //}
+
+        public System.Data.Linq.Table<CUSTOMER> CUSTOMERs
 		{
 			get
 			{

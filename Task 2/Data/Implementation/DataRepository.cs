@@ -2,17 +2,20 @@
 using System.Linq;
 namespace Data.Implementation;
 
-internal class DataRepository : IDataRepository
+public class DataRepository : IDataRepository
 {
-    //public DataRepository() { }
-    //LinqToSqlDataContext dc = new LinqToSqlDataContext();
     private LinqToSqlDataContext dc;
-    //public DataRepository()
-    //{
-    //    dc = new LinqToSqlDataContext();
-    //}
-    private readonly DataContext datacontext = new DataContext();
+    public DataRepository()
+    {
 
+    }
+    public DataRepository(string sqlString)
+    {
+        dc = new LinqToSqlDataContext(sqlString);
+    }
+    //do usunięcia później
+    private readonly DataContext datacontext = new DataContext();
+    //
     #region State
     public override IState GetState(int Id)
     {
@@ -60,11 +63,11 @@ internal class DataRepository : IDataRepository
     }
     public override void AddCustomer(int Id, string FirstName, string LastName)
     {
-        CUSTOMER customerr = dc.CUSTOMERs.Single(CUSTOMER => CUSTOMER.Id == Id);
-        if (Map(customerr) != null)
-        {
-            throw new InvalidOperationException();
-        }
+        //CUSTOMER customerr = dc.CUSTOMERs?.Single(CUSTOMER => CUSTOMER.Id == Id);
+        //if (Map(customerr) != null)
+        //{
+        //    throw new InvalidOperationException();
+        //}
         CUSTOMER newCustomer = new CUSTOMER
         {
             Id = Id,
@@ -76,9 +79,8 @@ internal class DataRepository : IDataRepository
     }
     public override ICustomer GetCustomer(int Id)
     {
-        CUSTOMER customer = dc.CUSTOMERs.Single(CUSTOMER => CUSTOMER.Id == Id);
-        return (ICustomer)customer;
-        //return datacontext.CustomerList[Id];
+        CUSTOMER customer = dc.CUSTOMERs.FirstOrDefault(c => c.Id.Equals(Id));
+        return Map(customer);
     }
     public override void DeleteCustomer(int Id)
     {
@@ -102,28 +104,37 @@ internal class DataRepository : IDataRepository
     #region Order
     public override void AddOrder(IOrder o)
     {
-        for (int i = 0; i < CountOrderList(); i++)
+        ORDER order = dc.ORDERs.Single(ORDER => ORDER.Id == o.Id);
+        if (order != null)
         {
-            if (GetOrder(i).Id == o.Id)
-            {
-                throw new InvalidOperationException();
-            }
+            throw new InvalidOperationException();
         }
-        datacontext.OrderList.Add(o);
+        ORDER newOrder = new ORDER
+        {
+            Id = o.Id, ProductId = o.ProductId, Amount = o.Amount,  UserId = o.UserId
+        };
+        dc.ORDERs.InsertOnSubmit(newOrder);
+        dc.SubmitChanges();
     }
     public override IOrder GetOrder(int Id)
     {
-        return datacontext.OrderList[Id];
+        ORDER order = dc.ORDERs.Single(ORDER => ORDER.Id == Id);
+        return (IOrder)order;
+
+        //return datacontext.OrderList[Id];
     }
     public override void DeleteOrder(int Id)
     {
-        for (int i = 0; i < CountOrderList(); i++)
-        {
-            if (GetOrder(i).Id == Id)
-            {
-                datacontext.OrderList.RemoveAt(i);
-            }
-        }
+        // for (int i = 0; i < CountOrderList(); i++)
+        // {
+        //     if (GetOrder(i).Id == Id)
+        //     {
+        //         datacontext.OrderList.RemoveAt(i);
+        //     }
+        // }
+        ORDER order = dc.ORDERs.Single(ORDER => ORDER.Id == Id);
+        dc.ORDERs.DeleteOnSubmit(order);
+        dc.SubmitChanges();
     }
     public override int CountOrderList()
     {
