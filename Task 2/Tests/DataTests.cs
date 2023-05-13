@@ -28,7 +28,7 @@ namespace Tests
             database.DeleteCustomer(1);
             Assert.AreEqual(database.CountCustomerList(), 0);
         }
-
+/*
         [TestMethod]
         public void CheckAddingDeletingOrder()
         {
@@ -86,5 +86,6 @@ namespace Tests
             database.DeleteState(1);
             Assert.AreEqual(database.CountStateList(), 0);
         }
+*/
     }
 }

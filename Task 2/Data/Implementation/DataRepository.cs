@@ -5,6 +5,7 @@ namespace Data.Implementation;
 internal class DataRepository : IDataRepository
 {
     //public DataRepository() { }
+    LinqToSqlDataContext dc = new LinqToSqlDataContext();
     private readonly DataContext datacontext = new DataContext();
 
     public override int CountCustomerList()
@@ -57,28 +58,48 @@ internal class DataRepository : IDataRepository
     public override void AddCustomer(int Id, string FirstName, string LastName)
     {
         //ICustomer a = new Customer(Id, FirstName, LastName);
-        for (int i = 0; i < CountCustomerList(); i++)
-        {
-            if (GetCustomer(i).Id == Id)
-            {
-                throw new InvalidOperationException();
-            }
-        }
+        //for (int i = 0; i < CountCustomerList(); i++)
+        //{
+        //    if (GetCustomer(i).Id == Id)
+        //    {
+        //        throw new InvalidOperationException();
+        //    }
+        //}
         //datacontext.CustomerList.Add(a);
+        var check = from p in dc.Customers
+                where p.id == Id
+                select p;
+        if(check != null)
+        {
+            throw new InvalidOperationException();
+        }
+        dc.Customers.id.Add(Id);
+        dc.Customers.firstName.Add(FirstName);
+        dc.Customers.lastName.Add(LastName);
     }
     public override ICustomer GetCustomer(int Id)
     {
-        return datacontext.CustomerList[Id];
+        var check = from p in dc.Customers
+                    where p.id == Id
+                    select p;
+        return check;
+        //return datacontext.CustomerList[Id];
     }
     public override void DeleteCustomer(int Id)
     {
-        for (int i = 0; i < CountCustomerList(); i++)
-        {
-            if (GetCustomer(i).Id == Id)
-            {
-                datacontext.CustomerList.RemoveAt(i);
-            }
-        }
+        //for (int i = 0; i < CountCustomerList(); i++)
+        //{
+        //    if (GetCustomer(i).Id == Id)
+        //    {
+        //        datacontext.CustomerList.RemoveAt(i);
+        //    }
+        //}
+        var check = from p in dc.Customers
+                    where p.id == Id
+                    select p;
+        dc.Customers.id.Remove(check);
+        dc.Customers.firstName.Remove(check);
+        dc.Customers.lastName.Remove(check);
     }
 
     public override void AddOrder(IOrder o)

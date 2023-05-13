@@ -1,4 +1,4 @@
-﻿
+﻿namespace Service.API;
 public interface ICustomer
 {
     public int Id { get; set; }

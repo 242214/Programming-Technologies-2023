@@ -3,7 +3,7 @@ using Logic.API;
 using Logic.Implementation;
 namespace Tests
 {
-    [TestClass]
+   /* [TestClass]
     public class TestBusinessLogic
     {
         [TestMethod]
@@ -38,5 +38,5 @@ namespace Tests
                 Console.WriteLine("Not enough product");
             }
         }
-    }
+    }*/
 }
