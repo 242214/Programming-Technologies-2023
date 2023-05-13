@@ -21,14 +21,14 @@ internal class DataContext : DbContext, IDataContext
         this._connectionString = connectionString ?? defaultConnectionString;
     }
 
-    public DbSet<Customer> _customers { get; set; }
-    public IQueryable<ICustomer> Customer => _customers;
-    public DbSet<Product> _products { get; set; }
-    public IQueryable<IProduct> Product => _products;
-    public DbSet<State> _states { get; set; }
-    public IQueryable<IState> State => _states;
-    public DbSet<Order> _orders { get; set; }
-    public IQueryable<IOrder> Order => _orders;
+    public DbSet<CUSTOMER> _customers { get; set; }
+    public IQueryable<ICustomer> Customer => (IQueryable<ICustomer>)_customers;
+    public DbSet<PRODUCT> _products { get; set; }
+    public IQueryable<IProduct> Product => (IQueryable<IProduct>)_products;
+    public DbSet<STATE> _states { get; set; }
+    public IQueryable<IState> State => (IQueryable<IState>)_states;
+    public DbSet<ORDER> _orders { get; set; }
+    public IQueryable<IOrder> Order => (IQueryable<IOrder>)_orders;
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -49,28 +49,28 @@ internal class DataContext : DbContext, IDataContext
 
     public async Task AddCustomerAsync(ICustomer customer)
     {
-        Customer customerToAdd = new() { Id = customer.Id, FirstName = customer.FirstName, LastName = customer.LastName };
+        CUSTOMER customerToAdd = new() { Id = customer.Id, FirstName = customer.FirstName, LastName = customer.LastName };
         await _customers.AddAsync(customerToAdd);
         await SaveChangesAsync();
     }
 
     public async Task AddProductAsync(IProduct product)
     {
-        Product productToAdd = new() { Id = product.Id, Name = product.Name, Price = product.Price};
+        PRODUCT productToAdd = new() { Id = product.Id, Name = product.Name, Price = product.Price};
         await _products.AddAsync(productToAdd);
         await SaveChangesAsync();
     }
 
     public async Task AddStateAsync(IState state)
     {
-        State stateToAdd = new() {Id = state.Id, ProductId = state.ProductId, Amount = state.Amount, isAvailable = true};
+        STATE stateToAdd = new() {Id = state.Id, ProductId = state.ProductId, Amount = state.Amount, isAvailable = true};
         await _states.AddAsync(stateToAdd);
         await SaveChangesAsync();
     }
 
     public async Task AddOrderAsync(IOrder order)
     {
-        Order orderToAdd = new() {Id = order.Id, ProductId = order.ProductId, Amount = order.Amount,  UserId = order.UserId};
+        ORDER orderToAdd = new() {Id = order.Id, ProductId = order.ProductId, Amount = order.Amount,  UserId = order.UserId};
         await _orders.AddAsync(orderToAdd);
         await SaveChangesAsync();
     }
@@ -79,7 +79,7 @@ internal class DataContext : DbContext, IDataContext
     public async Task DeleteCustomerAsync(int Id)
     {
 
-        Customer? entityToRemove = await _customers.FindAsync(Id);
+        CUSTOMER? entityToRemove = await _customers.FindAsync(Id);
         if(entityToRemove != null)
         {
             _customers.Remove(entityToRemove);
@@ -90,7 +90,7 @@ internal class DataContext : DbContext, IDataContext
         public async Task DeleteProductAsync(int Id)
     {
 
-        Product? entityToRemove = await _products.FindAsync(Id);
+        PRODUCT? entityToRemove = await _products.FindAsync(Id);
         if(entityToRemove != null)
         {
             _products.Remove(entityToRemove);
@@ -101,7 +101,7 @@ internal class DataContext : DbContext, IDataContext
     public async Task DeleteStateAsync(int Id)
     {
 
-        State? entityToRemove = await _states.FindAsync(Id);
+        STATE? entityToRemove = await _states.FindAsync(Id);
         if(entityToRemove != null)
         {
             _states.Remove(entityToRemove);
@@ -112,7 +112,7 @@ internal class DataContext : DbContext, IDataContext
         public async Task DeleteOrderAsync(int Id)
     {
 
-        Order? entityToRemove = await _orders.FindAsync(Id);
+        ORDER? entityToRemove = await _orders.FindAsync(Id);
         if(entityToRemove != null)
         {
             _orders.Remove(entityToRemove);
