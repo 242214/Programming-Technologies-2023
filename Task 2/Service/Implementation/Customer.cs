@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Service.API;
+//using Service.API;
+using Data.API;
+using Data;
 
 namespace Service.Implementation
 {
@@ -20,14 +22,5 @@ namespace Service.Implementation
         public string FirstName { get; set; }
         public string LastName { get; set; }
 
-        public Task AddAsync()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task DeleteAsync()
-        {
-            throw new NotImplementedException();
-        }
     }
 }
