@@ -13,19 +13,7 @@ internal class DataRepository : IDataRepository
     //}
     private readonly DataContext datacontext = new DataContext();
 
-    public override int CountCustomerList()
-    {
-        return datacontext.CustomerList.Count();
-    }
-    public override int CountOrderList()
-    {
-        return datacontext.OrderList.Count();
-    }
-    public override int CountProductList()
-    {
-        return datacontext.ProductList.Count();
-    }
-    
+    #region State
     public override IState GetState(int Id)
     {
         return datacontext.StateList[Id];
@@ -59,28 +47,31 @@ internal class DataRepository : IDataRepository
             }
         }
     }
+    #endregion
 
+    #region Customer
+    private ICustomer Map(CUSTOMER customer)
+    {
+        if(customer == null)
+        {
+            return null;
+        }
+        return new Customer(customer.Id, customer.FirstName, customer.LastName);
+    }
     public override void AddCustomer(int Id, string FirstName, string LastName)
     {
-        //ICustomer a = new Customer(Id, FirstName, LastName);
-        //for (int i = 0; i < CountCustomerList(); i++)
-        //{
-        //    if (GetCustomer(i).Id == Id)
-        //    {
-        //        throw new InvalidOperationException();
-        //    }
-        //}
-        //datacontext.CustomerList.Add(a);
         CUSTOMER customerr = dc.CUSTOMERs.Single(CUSTOMER => CUSTOMER.Id == Id);
-        if (customerr != null)
+        if (Map(customerr) != null)
         {
             throw new InvalidOperationException();
         }
-        CUSTOMER customer = new CUSTOMER();
-        customer.Id = Id;
-        customer.FirstName = FirstName;
-        customer.LastName = LastName;
-        dc.CUSTOMERs.InsertOnSubmit(customer);
+        CUSTOMER newCustomer = new CUSTOMER
+        {
+            Id = Id,
+            FirstName = FirstName,
+            LastName = LastName
+        };
+        dc.CUSTOMERs.InsertOnSubmit(newCustomer);
         dc.SubmitChanges();
     }
     public override ICustomer GetCustomer(int Id)
@@ -102,7 +93,13 @@ internal class DataRepository : IDataRepository
         dc.CUSTOMERs.DeleteOnSubmit(customer);
         dc.SubmitChanges();
     }
+    public override int CountCustomerList()
+    {
+        return datacontext.CustomerList.Count();
+    }
+    #endregion
 
+    #region Order
     public override void AddOrder(IOrder o)
     {
         for (int i = 0; i < CountOrderList(); i++)
@@ -128,7 +125,13 @@ internal class DataRepository : IDataRepository
             }
         }
     }
+    public override int CountOrderList()
+    {
+        return datacontext.OrderList.Count();
+    }
+    #endregion
 
+    #region Product
     public override void AddProduct(int Id, string Name, double Price)
     {
         //IProduct p = new Product(Id, Name, Price);
@@ -159,4 +162,9 @@ internal class DataRepository : IDataRepository
             }
         }
     }
+    public override int CountProductList()
+    {
+        return datacontext.ProductList.Count();
+    }
+    #endregion
 }
