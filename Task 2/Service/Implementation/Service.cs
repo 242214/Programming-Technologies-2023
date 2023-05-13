@@ -1,13 +1,11 @@
-/*using Service.API;
 using Data.API;
-//using Service.Model;
 using System.Runtime.CompilerServices;
 
-[assembly: InternalsVisibleTo("ServiceTests")]
+//[assembly: InternalsVisibleTo("ServiceTests")]
 
 namespace Service.Implementation
 {
-    internal class DataService : IService
+    internal class DataService
     {
         private IDataContext dataContext;
 
@@ -25,8 +23,8 @@ namespace Service.Implementation
         {
             await dataContext.AddStateAsync(new State(
 
-                s.Id,
-                dataContext.Products.Where(p => p.Id == s.ProductId).First()
+                s.Id, s.ProductId, s.Amount, s.isAvailable
+                //dataContext.Products.Where(s => s.Id == s.ProductId).First()
 
             ));
         }
@@ -38,10 +36,8 @@ namespace Service.Implementation
 
         public async Task AddOrder(API.IOrder o)
         {
-            await dataContext.AddUserAsync(new Order(o.Id, o.ProductId, o.Amount, o.UserId));
-        }
-
-        
+            await dataContext.AddOrderAsync(new Order(o.Id, o.ProductId, o.Amount, o.UserId));
+        }        
 
         public Task DeleteProduct(int id)
         {
@@ -53,9 +49,9 @@ namespace Service.Implementation
             return dataContext.DeleteStateAsync(id);
         }
 
-        public Task DeleteOrder(string id)
+        public Task DeleteOrder(int id)
         {
-            return dataContext.DeleteUserAsync(id);
+            return dataContext.DeleteOrderAsync(id);
         }
 
         public Task DeleteCustomer(int id)
@@ -63,15 +59,14 @@ namespace Service.Implementation
             return dataContext.DeleteCustomerAsync(id);
         }
 
-        public async Task<IEnumerable<API.IProduct>> GetAllProducts()
-        {
-            return dataContext.Products.Select(p => new ProductModel(p.Id, p.Name, p.Price, this)).ToList();
-        }
-        public async Task<IEnumerable<API.IUsers>> GetAllCustomers()
-        {
-            return dataContext.Customers.Select(c => new CustomerModel(this, c.Id, c.FirstName, c.LastName)).ToList();
-        }
+        // public async Task<IEnumerable<API.IProduct>> GetAllProducts()
+        // {
+        //     return dataContext.Products.Select(p => new ProductModel(p.Id, p.Name, p.Price, this)).ToList();
+        // }
+        // public async Task<IEnumerable<API.IUsers>> GetAllCustomers()
+        // {
+        //     return dataContext.Customers.Select(c => new CustomerModel(this, c.Id, c.FirstName, c.LastName)).ToList();
+        // }
 
     }
 }
-*/
