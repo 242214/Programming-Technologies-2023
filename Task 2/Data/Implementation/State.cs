@@ -8,9 +8,17 @@ namespace Data.Implementation
 {
     internal class State : IState
     {
+        public State(int id, int productId, int amount, bool isAvailable)
+        {
+            Id = id;
+            ProductId = productId;
+            Amount = amount;
+            this.isAvailable = isAvailable;
+        }
+
         public int Id { get; set; }
         public int ProductId { get; set;  }
-        public uint Amount { get; set; }
+        public int Amount { get; set; }
         public bool isAvailable { get; set; }
     }
 }

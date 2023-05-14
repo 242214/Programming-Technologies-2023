@@ -389,7 +389,7 @@ namespace Data
 		
 		private int _ProductId;
 		
-		private uint _Amount;
+		private int _Amount;
 		
 		private int _UserId;
 		
@@ -405,7 +405,7 @@ namespace Data
     partial void OnIdChanged();
     partial void OnProductIdChanging(int value);
     partial void OnProductIdChanged();
-    partial void OnAmountChanging(uint value);
+    partial void OnAmountChanging(int value);
     partial void OnAmountChanged();
     partial void OnUserIdChanging(int value);
     partial void OnUserIdChanged();
@@ -463,7 +463,7 @@ namespace Data
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Amount")]
-		public uint Amount
+		public int Amount
 		{
 			get
 			{
@@ -605,7 +605,7 @@ namespace Data
 		
 		private int _ProductId;
 		
-		private uint _Amount;
+		private int _Amount;
 		
 		private bool _isAvailable;
 		
@@ -621,7 +621,7 @@ namespace Data
     partial void OnIdChanged();
     partial void OnProductIdChanging(int value);
     partial void OnProductIdChanged();
-    partial void OnAmountChanging(uint value);
+    partial void OnAmountChanging(int value);
     partial void OnAmountChanged();
     partial void OnisAvailableChanging(bool value);
     partial void OnisAvailableChanged();
@@ -679,7 +679,7 @@ namespace Data
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Amount")]
-		public uint Amount
+		public int Amount
 		{
 			get
 			{

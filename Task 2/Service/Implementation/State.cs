@@ -6,7 +6,7 @@ namespace Service.Implementation
     {
         //private readonly IProduct product;
 
-        public State(int Id, int ProductId, uint Amount, bool isAvailable)
+        public State(int Id, int ProductId, int Amount, bool isAvailable)
         {
            this.Id=Id;
            this.ProductId=ProductId;
@@ -17,7 +17,7 @@ namespace Service.Implementation
         //public string ProductId => product.Id;
         public int Id { get; set; }
         public int ProductId { get; set; }
-        public uint Amount { get; set; }
+        public int Amount { get; set; }
         public bool isAvailable { get; set; }
     }
 }

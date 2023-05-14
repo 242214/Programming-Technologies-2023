@@ -19,7 +19,7 @@ public abstract class IDataRepository
     public abstract List<IProduct> GetProductList();
     public abstract IState GetState(int Id);
     public abstract int CountStateList();
-    public abstract void AddState(int Id, int ProductId, uint Amount, bool isAvailable);
+    public abstract void AddState(int Id, int ProductId, int Amount, bool isAvailable);
     public abstract void DeleteState(int Id);
 
     public static IDataRepository CreateDatabase()

@@ -1,4 +1,5 @@
 ﻿using Data.API;
+using Data.Implementation.DB;
 using System.Linq;
 namespace Data.Implementation;
 
@@ -17,9 +18,18 @@ public class DataRepository : IDataRepository
     private readonly DataContext datacontext = new DataContext();
     //
     #region State
+    private IState Map(STATE state)
+    {
+        if (state == null)
+        {
+            return null;
+        }
+        return new State(state.Id, state.ProductId, state.Amount, state.isAvailable);
+    }
     public override IState GetState(int Id)
     {
-        return datacontext.StateList[Id];
+        STATE state = dc.STATEs.Single(STATE => STATE.Id == Id);
+        return Map(state);
     }
 
     public override int CountStateList()
@@ -27,28 +37,24 @@ public class DataRepository : IDataRepository
         return datacontext.StateList.Count();
     }
 
-    public override void AddState(int Id, int ProductId, uint Amount, bool isAvailable)
+    public override void AddState(int Id, int ProductId, int Amount, bool isAvailable)
     {
-        //IState s = new State(Id, ProductId, Amount, isAvailable);
-        for (int i = 0; i < CountStateList(); i++)
+        STATE newState = new STATE
         {
-            if(GetState(i).Id == Id)
-            {
-                throw new InvalidOperationException();
-            }
-        }
-        //datacontext.StateList.Add(s);
+            Id = Id,
+            ProductId = ProductId,
+            Amount = Amount,
+            isAvailable = true
+        };
+        dc.STATEs.InsertOnSubmit(newState);
+        dc.SubmitChanges();
     }
 
     public override void DeleteState(int Id)
     {
-        for(int i = 0; i < CountStateList(); i++)
-        {
-            if(GetState(i).Id == Id)
-            {
-                datacontext.StateList.RemoveAt(i);
-            }
-        }
+        STATE state = dc.STATEs.Single(STATE => STATE.Id == Id);
+        dc.STATEs.DeleteOnSubmit(state);
+        dc.SubmitChanges();
     }
     #endregion
 
@@ -63,11 +69,6 @@ public class DataRepository : IDataRepository
     }
     public override void AddCustomer(int Id, string FirstName, string LastName)
     {
-        //CUSTOMER customerr = dc.CUSTOMERs?.Single(CUSTOMER => CUSTOMER.Id == Id);
-        //if (Map(customerr) != null)
-        //{
-        //    throw new InvalidOperationException();
-        //}
         CUSTOMER newCustomer = new CUSTOMER
         {
             Id = Id,
@@ -84,31 +85,27 @@ public class DataRepository : IDataRepository
     }
     public override void DeleteCustomer(int Id)
     {
-        //for (int i = 0; i < CountCustomerList(); i++)
-        //{
-        //    if (GetCustomer(i).Id == Id)
-        //    {
-        //        datacontext.CustomerList.RemoveAt(i);
-        //    }
-        //}
         CUSTOMER customer = dc.CUSTOMERs.Single(CUSTOMER => CUSTOMER.Id == Id);
         dc.CUSTOMERs.DeleteOnSubmit(customer);
         dc.SubmitChanges();
     }
     public override int CountCustomerList()
     {
-        return datacontext.CustomerList.Count();
+        return dc.CUSTOMERs.Count();
     }
     #endregion
 
     #region Order
+    private IOrder Map(ORDER order)
+    {
+        if(order == null)
+        {
+            return null;
+        }
+        return new Order(order.Id, order.ProductId, order.Amount, order.UserId);
+    }
     public override void AddOrder(IOrder o)
     {
-        ORDER order = dc.ORDERs.Single(ORDER => ORDER.Id == o.Id);
-        if (order != null)
-        {
-            throw new InvalidOperationException();
-        }
         ORDER newOrder = new ORDER
         {
             Id = o.Id, ProductId = o.ProductId, Amount = o.Amount,  UserId = o.UserId
@@ -119,45 +116,44 @@ public class DataRepository : IDataRepository
     public override IOrder GetOrder(int Id)
     {
         ORDER order = dc.ORDERs.Single(ORDER => ORDER.Id == Id);
-        return (IOrder)order;
-
-        //return datacontext.OrderList[Id];
+        return Map(order);
     }
     public override void DeleteOrder(int Id)
     {
-        // for (int i = 0; i < CountOrderList(); i++)
-        // {
-        //     if (GetOrder(i).Id == Id)
-        //     {
-        //         datacontext.OrderList.RemoveAt(i);
-        //     }
-        // }
         ORDER order = dc.ORDERs.Single(ORDER => ORDER.Id == Id);
         dc.ORDERs.DeleteOnSubmit(order);
         dc.SubmitChanges();
     }
     public override int CountOrderList()
     {
-        return datacontext.OrderList.Count();
+        return dc.ORDERs.Count();
     }
     #endregion
 
     #region Product
+    private IProduct Map(PRODUCT product)
+    {
+        if (product == null)
+        {
+            return null;
+        }
+        return new Product(product.Id, product.Name, product.Price);
+    }
     public override void AddProduct(int Id, string Name, double Price)
     {
-        //IProduct p = new Product(Id, Name, Price);
-        for (int i = 0; i < CountProductList(); i++)
+        PRODUCT newProduct = new PRODUCT
         {
-            if (GetProduct(i).Id == Id)
-            {
-                throw new InvalidOperationException();
-            }
-        }
-        //datacontext.ProductList.Add(p);
+            Id = Id,
+            Name = Name,
+            Price = Price
+        };
+        dc.PRODUCTs.InsertOnSubmit(newProduct);
+        dc.SubmitChanges();
     }
     public override IProduct GetProduct(int Id)
     {
-        return datacontext.ProductList[Id];
+        PRODUCT product = dc.PRODUCTs.FirstOrDefault(c => c.Id.Equals(Id));
+        return Map(product);
     }
     public override List<IProduct> GetProductList()
     {
@@ -165,17 +161,13 @@ public class DataRepository : IDataRepository
     }
     public override void DeleteProduct(int Id)
     {
-        for(int i = 0; i < CountProductList(); i++)
-        {
-            if(GetProduct(i).Id == Id)
-            {
-                datacontext.ProductList.RemoveAt(i);
-            }
-        }
+        PRODUCT product = dc.PRODUCTs.Single(PRODUCT => PRODUCT.Id == Id);
+        dc.PRODUCTs.DeleteOnSubmit(product);
+        dc.SubmitChanges();
     }
     public override int CountProductList()
     {
-        return datacontext.ProductList.Count();
+        return dc.PRODUCTs.Count();
     }
     #endregion
 }

@@ -9,7 +9,7 @@ internal class BusinessLogic : IBusinessLogic
     IDataRepository database = IDataRepository.CreateDatabase();
     public BusinessLogic() { }
 
-    public override void BuyProduct(int Id, int ProductId, uint Amount) //uzupełnij produkt
+    public override void BuyProduct(int Id, int ProductId, int Amount) //uzupełnij produkt
     {
         int a = 0;
         for (int i = 0; i < database.CountProductList(); i++)
@@ -27,7 +27,7 @@ internal class BusinessLogic : IBusinessLogic
             throw new Exception("Product with this Id doesnt exist");
         }
     }
-    public override void SellProduct(int Id, int ProductId, uint OrderAmount, int UserId) //sprzedaj klijentowi
+    public override void SellProduct(int Id, int ProductId, int OrderAmount, int UserId) //sprzedaj klijentowi
     {
         if (OrderAmount <= 0) throw new Exception("Product Amount cannot be equal or less than 0");
         if (!database.GetState(ProductId).isAvailable) throw new Exception("Not enough product");
