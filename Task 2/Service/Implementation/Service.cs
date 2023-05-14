@@ -1,3 +1,4 @@
+using Data;
 using Data.API;
 using System.Runtime.CompilerServices;
 
@@ -8,6 +9,7 @@ namespace Service.Implementation
     internal class DataService
     {
         private IDataContext dataContext;
+        //private LinqToSqlDataContext dataContext;
 
         internal DataService(IDataContext dataContext)
         {
