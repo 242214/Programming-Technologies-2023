@@ -15,7 +15,7 @@ namespace Presentation.Model
         public int UserId { get; set; }
         public IService Servicee { get; }
         
-        public Order(int Id, int ProductId, int Amount, int UserId, IService service)
+        public OrderModel(int Id, int ProductId, int Amount, int UserId, IService service)
         {
             this.Id = Id;
             this.ProductId = ProductId;
