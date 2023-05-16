@@ -11,7 +11,7 @@ Task AddCustomer(ICustomer c);
 Task DeleteCustomer(int id);
 
 Task<IEnumerable<IProduct>> GetAllProducts();
-Task AddCustomer(IProduct c);
+Task AddProduct(IProduct c);
 Task DeleteProduct(int id);
 
 Task<IEnumerable<IOrder>> GetAllOrders();

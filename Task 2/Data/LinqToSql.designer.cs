@@ -22,6 +22,7 @@ namespace Data
 	using System;
 	
 	
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="PTShop")]
 	public partial class LinqToSqlDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -41,8 +42,9 @@ namespace Data
     partial void InsertSTATE(STATE instance);
     partial void UpdateSTATE(STATE instance);
     partial void DeleteSTATE(STATE instance);
-        #endregion
-        public LinqToSqlDataContext(string connection) : 
+    #endregion
+		
+		public LinqToSqlDataContext(string connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
@@ -65,12 +67,8 @@ namespace Data
 		{
 			OnCreated();
 		}
-
-        //public LinqToSqlDataContext()
-        //{
-        //}
-
-        public System.Data.Linq.Table<CUSTOMER> CUSTOMERs
+		
+		public System.Data.Linq.Table<CUSTOMER> CUSTOMERs
 		{
 			get
 			{
@@ -103,7 +101,7 @@ namespace Data
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="")]
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.CUSTOMER")]
 	public partial class CUSTOMER : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
@@ -241,7 +239,7 @@ namespace Data
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="")]
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.PRODUCT")]
 	public partial class PRODUCT : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
@@ -379,7 +377,7 @@ namespace Data
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="")]
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ORDER")]
 	public partial class ORDER : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
@@ -595,7 +593,7 @@ namespace Data
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="")]
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.STATE")]
 	public partial class STATE : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		

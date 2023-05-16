@@ -28,7 +28,18 @@ public class DataRepository : IDataRepository
     }
     public override IState GetState(int Id)
     {
-        STATE state = dc.STATEs.Single(STATE => STATE.Id == Id);
+        //STATE state = dc.STATEs.Single(STATE => STATE.Id == Id);
+        STATE state = new STATE();
+        var v = from s in dc.STATEs
+                    where s.Id == Id
+                    select s;
+        foreach (var item  in v) 
+        {
+            state.Id = item.Id;
+            state.ProductId = item.ProductId;
+            state.Amount = item.Amount;
+            state.isAvailable = item.isAvailable;
+        }
         return Map(state);
     }
 
@@ -80,7 +91,17 @@ public class DataRepository : IDataRepository
     }
     public override ICustomer GetCustomer(int Id)
     {
-        CUSTOMER customer = dc.CUSTOMERs.FirstOrDefault(c => c.Id.Equals(Id));
+        //CUSTOMER customer = dc.CUSTOMERs.FirstOrDefault(c => c.Id.Equals(Id));
+        CUSTOMER customer = new CUSTOMER();
+        var v = from s in dc.CUSTOMERs
+                where s.Id == Id
+                select s;
+        foreach (var item in v)
+        {
+            customer.Id = item.Id;
+            customer.FirstName = item.FirstName;
+            customer.LastName = item.LastName;
+        }
         return Map(customer);
     }
     public override void DeleteCustomer(int Id)
@@ -115,7 +136,18 @@ public class DataRepository : IDataRepository
     }
     public override IOrder GetOrder(int Id)
     {
-        ORDER order = dc.ORDERs.Single(ORDER => ORDER.Id == Id);
+        //ORDER order = dc.ORDERs.Single(ORDER => ORDER.Id == Id);
+        ORDER order = new ORDER();
+        var v = from s in dc.ORDERs
+                where s.Id == Id
+                select s;
+        foreach (var item in v)
+        {
+            order.Id = item.Id;
+            order.ProductId = item.ProductId;
+            order.Amount = item.Amount;
+            order.UserId = item.UserId;
+        }
         return Map(order);
     }
     public override void DeleteOrder(int Id)
@@ -152,7 +184,17 @@ public class DataRepository : IDataRepository
     }
     public override IProduct GetProduct(int Id)
     {
-        PRODUCT product = dc.PRODUCTs.FirstOrDefault(c => c.Id.Equals(Id));
+        //PRODUCT product = dc.PRODUCTs.FirstOrDefault(c => c.Id.Equals(Id));
+        PRODUCT product = new PRODUCT();
+        var v = from s in dc.PRODUCTs
+                where s.Id == Id
+                select s;
+        foreach (var item in v)
+        {
+            product.Id = item.Id;
+            product.Name = item.Name;
+            product.Price = item.Price;
+        }
         return Map(product);
     }
     public override List<IProduct> GetProductList()

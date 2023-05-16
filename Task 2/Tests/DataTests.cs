@@ -44,9 +44,9 @@ namespace Tests
        public void CheckAddingDeletingState()
        { 
            DataRepository database = new DataRepository(sqlString);
-           database.AddState(1, 1, 1, true);
-           Assert.AreEqual(true, database.GetState(1).isAvailable);
-           database.DeleteState(1);
+           database.AddState(2, 1, 1, true);
+           Assert.AreEqual(true, database.GetState(2).isAvailable);
+           database.DeleteState(2);
            Assert.AreEqual(database.CountStateList(), 0);
        }
     }

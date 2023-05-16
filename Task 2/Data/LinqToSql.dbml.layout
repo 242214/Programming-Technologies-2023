@@ -26,7 +26,7 @@
         <elementListCompartment Id="868d17f6-6f77-4ce5-bc96-232a104ef344" absoluteBounds="3.5150000000000006, 1.335, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(5.5 : 4.69314697265625); (7.25 : 4.69314697265625); (7.25 : 2.45359537760417)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.5 : 4.69314697265625); (7.25 : 4.69314697265625); (7.25 : 2.45359537760417)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/LinqToSqlDataContext/CUSTOMER/CUSTOMER_ORDER" />
       <nodes>
         <classShapeMoniker Id="03ca66db-61f9-43fb-95e7-c2a978e68e5f" />
@@ -40,7 +40,7 @@
         <classShapeMoniker Id="911d6874-12a4-41e7-92a1-a84fdd951c52" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 1.66429768880208); (6.25 : 1.66429768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.5 : 1.66429768880208); (6.25 : 1.66429768880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/LinqToSqlDataContext/STATE/STATE_ORDER" />
       <nodes>
         <classShapeMoniker Id="911d6874-12a4-41e7-92a1-a84fdd951c52" />

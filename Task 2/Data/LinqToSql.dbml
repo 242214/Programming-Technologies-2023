@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Class="LinqToSqlDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="PTShop" Class="LinqToSqlDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Table Name="" Member="CUSTOMERs">
     <Type Name="CUSTOMER">
       <Column Name="Id" Type="int" IsPrimaryKey="true" CanBeNull="false" />
@@ -9,28 +9,28 @@
   </Table>
   <Table Name="" Member="PRODUCTs">
     <Type Name="PRODUCT">
-      <Column Member="Id" Type="int" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Member="Name" Type="System.String" CanBeNull="false" />
-      <Column Member="Price" Type="System.Double" CanBeNull="false" />
+      <Column Name="Id" Type="int" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" CanBeNull="false" />
+      <Column Name="Price" Type="System.Double" CanBeNull="false" />
       <Association Name="PRODUCT_STATE" Member="STATEs" ThisKey="Id" OtherKey="ProductId" Type="STATE" />
     </Type>
   </Table>
   <Table Name="" Member="ORDERs">
     <Type Name="ORDER">
-      <Column Member="Id" Type="int" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Member="ProductId" Type="int" CanBeNull="false" />
-      <Column Member="Amount" Type="System.UInt32" CanBeNull="false" />
-      <Column Member="UserId" Type="int" CanBeNull="false" />
+      <Column Name="Id" Type="int" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ProductId" Type="int" CanBeNull="false" />
+      <Column Name="Amount" Type="System.Int32" CanBeNull="false" />
+      <Column Name="UserId" Type="int" CanBeNull="false" />
       <Association Name="CUSTOMER_ORDER" Member="CUSTOMER" ThisKey="UserId" OtherKey="Id" Type="CUSTOMER" IsForeignKey="true" />
       <Association Name="STATE_ORDER" Member="STATE" ThisKey="ProductId" OtherKey="ProductId" Type="STATE" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="" Member="STATEs">
     <Type Name="STATE">
-      <Column Member="Id" Type="int" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Member="ProductId" Type="int" CanBeNull="false" />
-      <Column Member="Amount" Type="System.UInt32" CanBeNull="false" />
-      <Column Member="isAvailable" Type="System.Boolean" CanBeNull="false" />
+      <Column Name="Id" Type="int" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ProductId" Type="int" CanBeNull="false" />
+      <Column Name="Amount" Type="System.Int32" CanBeNull="false" />
+      <Column Name="isAvailable" Type="System.Boolean" CanBeNull="false" />
       <Association Name="STATE_ORDER" Member="ORDERs" ThisKey="ProductId" OtherKey="ProductId" Type="ORDER" />
       <Association Name="PRODUCT_STATE" Member="PRODUCT" ThisKey="ProductId" OtherKey="Id" Type="PRODUCT" IsForeignKey="true" />
     </Type>

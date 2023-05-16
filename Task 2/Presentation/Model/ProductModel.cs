@@ -12,7 +12,7 @@ namespace Presentation.Model
     public string Name { get; set; }
     public double Price { get; set; }
     public IService Servicee { get; }
-    public Product (int Id, string Name, double Price, IService service)
+    public ProductModel (int Id, string Name, double Price, IService service)
     {
         this.Id = Id;
         this.Name = Name;

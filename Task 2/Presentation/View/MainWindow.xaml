@@ -6,7 +6,7 @@
         xmlns:local="clrs-namespace:Presentation"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid Margin="0,0,-105,0", Height ="544", VerticalAlignment="To" RenderTransfromOrigin="0.301,0.574">
-        <Rectangle HorizontalAlignment="Left", Height ="25", Width ="500"/>
+    <Grid Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
+        <Rectangle HorizontalAlignment="Left" Height ="25" Width ="500"/>
     </Grid>
 </Window>
