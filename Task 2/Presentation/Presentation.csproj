@@ -12,10 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Service\Service.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Page Update="View\Customer.xaml">
       <SubType>Designer</SubType>
     </Page>

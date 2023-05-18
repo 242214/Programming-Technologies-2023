@@ -8,76 +8,84 @@ namespace Service.Implementation
 {
     internal class DataService
     {
-        private IDataContext dataContext;
         private IDataRepository dataRepository;
-        
-
-        //private LinqToSqlDataContext dataContext;
-
-        internal DataService(IDataContext dataContext)
-        {
-            this.dataContext = dataContext;
-        }
-        // internal DataService(IDataRepository dataContext)
-        // {
-        //     this.dataContext = dataContext;
-        // }
-
+         internal DataService(IDataRepository dataRepository)
+         {
+             this.dataRepository = dataRepository;
+         }
         public IDataRepository GetDataRepository()
         {
             return dataRepository;
         }
 
-        public async Task AddProduct(IProduct p, IDataRepository dataRepository)
+        public async Task AddProductAsync(IProduct p)
         {
-            dataRepository.AddProduct(p.Id, p.Name, p.Price);
-            //await dataContext.AddProductAsync(new Product(p.Id, p.Name, p.Price));
+            await Task.Run(() =>
+            {
+                dataRepository.AddProduct(p.Id, p.Name, p.Price);
+            });
         }
 
-        public async Task AddState(IState s)
+        public async Task AddStateAsync(IState s)
         {
-            await dataContext.AddStateAsync(new State(
-
-                s.Id, s.ProductId, s.Amount, s.isAvailable
-                //dataContext.Products.Where(s => s.Id == s.ProductId).First()
-
-            ));
+            await Task.Run(() =>
+            {
+                dataRepository.AddState(s.Id, s.ProductId, s.Amount, s.isAvailable);
+            });
         }
 
-        public async Task AddCustomer(ICustomer c)
-        {
-            await dataContext.AddCustomerAsync(new Customer(c.Id, c.FirstName, c.LastName));
+        public async Task AddCustomerAsync(ICustomer c)
+        {            
+            await Task.Run(() =>
+            {
+                dataRepository.AddCustomer(c.Id, c.FirstName, c.LastName);
+            });
         }
 
-        public async Task AddOrder(API.IOrder o)
+        public async Task AddOrderAsync(IOrder o)
         {
-            await dataContext.AddOrderAsync(new Order(o.Id, o.ProductId, o.Amount, o.UserId));
+            await Task.Run(() =>
+            {
+                dataRepository.AddOrder(o);
+            });
         }        
 
-        public Task DeleteProduct(int id)
+        public async Task DeleteProductAsync(int id)
         {
-            return dataContext.DeleteProductAsync(id);
+            await Task.Run(() =>
+            {
+                dataRepository.DeleteProduct(id);
+            });
         }
 
-        public Task DeleteState(int id)
+        public async Task DeleteStateAsync(int id)
         {
-            return dataContext.DeleteStateAsync(id);
+             await Task.Run(() =>
+            {
+                dataRepository.DeleteState(id);
+            });
         }
 
-        public Task DeleteOrder(int id)
+        public async Task DeleteOrderAsync(int id)
         {
-            return dataContext.DeleteOrderAsync(id);
+             await Task.Run(() =>
+            {
+                dataRepository.DeleteOrder(id);
+            });
         }
 
-        public Task DeleteCustomer(int id)
+        public async Task DeleteCustomerAsync(int id)
         {
-            return dataContext.DeleteCustomerAsync(id);
+             await Task.Run(() =>
+            {
+                dataRepository.DeleteCustomer(id);
+            });
         }
 
-        // public async Task<IEnumerable<API.IProduct>> GetAllProducts()
-        // {
-        //     return dataContext.Products.Select(p => new ProductModel(p.Id, p.Name, p.Price, this)).ToList();
-        // }
+         public async Task<IEnumerable<IProduct>> GetAllProducts()
+         {
+             return dataRepository.GetProductList.Select(p => new ProductModel(p.Id, p.Name, p.Price, this)).ToList();
+         }
         // public async Task<IEnumerable<API.IUsers>> GetAllCustomers()
         // {
         //     return dataContext.Customers.Select(c => new CustomerModel(this, c.Id, c.FirstName, c.LastName)).ToList();
