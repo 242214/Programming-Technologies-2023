@@ -9,19 +9,32 @@ namespace Service.Implementation
     internal class DataService
     {
         private IDataContext dataContext;
+        private IDataRepository dataRepository;
+        
+
         //private LinqToSqlDataContext dataContext;
 
         internal DataService(IDataContext dataContext)
         {
             this.dataContext = dataContext;
         }
+        // internal DataService(IDataRepository dataContext)
+        // {
+        //     this.dataContext = dataContext;
+        // }
 
-        public async Task AddProduct(API.IProduct p)
+        public IDataRepository GetDataRepository()
         {
-            await dataContext.AddProductAsync(new Product(p.Id, p.Name, p.Price));
+            return dataRepository;
         }
 
-        public async Task AddState(API.IState s)
+        public async Task AddProduct(IProduct p, IDataRepository dataRepository)
+        {
+            dataRepository.AddProduct(p.Id, p.Name, p.Price);
+            //await dataContext.AddProductAsync(new Product(p.Id, p.Name, p.Price));
+        }
+
+        public async Task AddState(IState s)
         {
             await dataContext.AddStateAsync(new State(
 
@@ -31,7 +44,7 @@ namespace Service.Implementation
             ));
         }
 
-        public async Task AddCustomer(API.ICustomer c)
+        public async Task AddCustomer(ICustomer c)
         {
             await dataContext.AddCustomerAsync(new Customer(c.Id, c.FirstName, c.LastName));
         }
