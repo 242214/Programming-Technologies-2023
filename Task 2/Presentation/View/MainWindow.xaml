@@ -6,7 +6,10 @@
         xmlns:local="clrs-namespace:Presentation"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
-        <Rectangle HorizontalAlignment="Left" Height ="25" Width ="500"/>
-    </Grid>
+    <StackPanel>
+        <ContentControl Content="{Binding CustomerViewModel}"/>
+        <Grid Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
+            <Rectangle HorizontalAlignment="Left" Height ="25" Width ="500" />
+        </Grid>
+    </StackPanel>
 </Window>
