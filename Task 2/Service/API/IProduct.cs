@@ -1,11 +1,11 @@
-namespace Service.API;
+// namespace Service.API;
 
-public interface IProduct
-{
-    public int Id { get; set; }
-    public string Name { get; set; }
-    public double Price { get; set; }
+// public interface IProduct
+// {
+//     public int Id { get; set; }
+//     public string Name { get; set; }
+//     public double Price { get; set; }
 
-    Task AddAsync();
-    Task DeleteAsync();
-}
+//     Task AddAsync();
+//     Task DeleteAsync();
+// }
