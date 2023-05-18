@@ -11,7 +11,7 @@ namespace Presentation.ViewModel
     public partial class MainViewModel : ObservableObject
     {
         public MainViewModel() 
-        {
+    {
             //Data = IDataRepository.CreateDatabase();
             CustomerViewModel = new CustomerViewModel(new CustomerModel());
         }
