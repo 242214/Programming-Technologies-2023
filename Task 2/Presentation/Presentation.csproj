@@ -9,7 +9,6 @@
 
   <ItemGroup>
     <Folder Include="ViewModel\" />
-    <Folder Include="View\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -18,6 +17,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Service\Service.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="View\Customer.xaml">
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
 
 </Project>

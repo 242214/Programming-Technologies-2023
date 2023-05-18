@@ -18,8 +18,11 @@ namespace Presentation
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Customer : CustomerControl
     {
-        public MainWindow() => InitializeComponent();
+        public Customer()
+        {
+            InitializeComponent();
+        }
     }
 }

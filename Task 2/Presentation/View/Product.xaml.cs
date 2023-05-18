@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,8 +18,11 @@ namespace Presentation
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Product : ProductControl
     {
-        public MainWindow() => InitializeComponent();
+        public Product()
+        {
+            InitializeComponent();
+        }
     }
 }
