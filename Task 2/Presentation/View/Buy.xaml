@@ -1,0 +1,24 @@
+<UserControl x:Class="Presentation.View.Buy"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:viem="clr-namespace:Presentation.ViewModel"
+             xmlns:local="clr-namespace:Presentation.View"
+             mc:Ignorable="d" Height="128" Width="661">
+    <Grid Margin="0,0,0,10">
+        <Rectangle HorizontalAlignment="Left" Height="17" Margin="10,10,0,0" Stroke="Black" VerticalAlignment="Top" Width="636" Fill="Khaki"/>
+        <TextBlock HorizontalAlignment="Left" Height="17" Margin="307,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="32" RenderTransformOrigin="-1.005,0.508"><Run Language="pl-pl" Text="BUY BY CUSTOMER"/></TextBlock>
+        <TextBox HorizontalAlignment="Left" Text="{Binding Id}" Height="20" Margin="58,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="262" />
+        <TextBlock HorizontalAlignment="Left" Height="20" Margin="10,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="48"><Run Language="pl-pl" Text="Id "/><Run Text="ID"/><Run Text=":"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Height="20" Margin="136,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="52"><Run Language="pl-pl" Text="Product ID"/><Run Text=":"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Height="20" Margin="254,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="74"><Run Language="pl-pl" Text="Amount" Foreground="White"/><Run Text=":" Foreground="White"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Height="20" Margin="484,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="74"><Run Language="pl-pl" Text="User Id" Foreground="White"/><Run Text=":" Foreground="White"/></TextBlock>
+        <TextBox HorizontalAlignment="Left" Text="{Binding Amount}" Height="20" Margin="299,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="157" />
+        <TextBox HorizontalAlignment="Left" Text="{Binding User Id}" Height="20" Margin="519,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="157" />
+
+        <TextBox HorizontalAlignment="Left" Text="{Binding Product Id}" Height="20" Margin="199,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="258" />
+        <Button Content="Buy" HorizontalAlignment="Left" Command="{Binding BuyCommand}" Height="20" Margin="10,78,0,0" VerticalAlignment="Top" Width="636" />
+
+    </Grid>
+</UserControl>
