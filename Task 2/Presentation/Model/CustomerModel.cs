@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Service.API;
+using Data.API;
 namespace Presentation.Model
 {
-public class CustomerModel : Service.API.ICustomer
+public class CustomerModel : ICustomer
 {
     public int Id { get; set; }
     public string FirstName { get; set; }
