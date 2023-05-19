@@ -23,9 +23,11 @@ namespace Tests
             s.AddProductAsync(1, "Potato", 2.5);
             //Assert.AreEqual(dataRepository.GetProduct(1), s.GetAllProducts());
             Assert.IsNotNull(s.GetAllProducts());
-            s.DeleteCustomerAsync(1);
+            s.DeleteProductAsync(1);
 
         }
+        
+
 
         [TestMethod]
         public void TestStateAsync() 
