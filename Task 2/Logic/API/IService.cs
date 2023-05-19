@@ -13,7 +13,7 @@ public abstract class IService
     public abstract Task DeleteCustomerAsync(int id);
 
     public abstract Task<IEnumerable<IProduct>> GetAllProducts();
-    public abstract Task AddProductAsync(int id, string name, double price);
+    public abstract Task AddProductAsync(int Id, string Name, double Price);
     public abstract Task DeleteProductAsync(int id);
 
     //public abstract Task<IEnumerable<IOrder>> GetAllOrders();

@@ -12,6 +12,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Data\Data.csproj" />
+    <ProjectReference Include="..\Logic\Service.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Page Update="View\Customer.xaml">
       <SubType>Designer</SubType>
     </Page>
