@@ -3,7 +3,7 @@ using System;
 using Data;
 using Data.API;
 using Data.Implementation;
-using Logic.Implementation;
+using Service.Implementation;
 using System.Data.SqlTypes;
 
 namespace Tests
@@ -49,5 +49,23 @@ namespace Tests
            database.DeleteState(2);
            Assert.AreEqual(database.CountStateList(), 0);
        }
+        [TestMethod]
+        public void CheckGetAllCustomer() 
+        {
+            DataRepository database = new DataRepository(sqlString);
+            database.AddCustomer(1, "John", "John");
+        }
+
+        [TestMethod]
+        public void TestDatabaseConnection()
+        {
+            using (LinqToSqlDataContext connection = new LinqToSqlDataContext(sqlString))
+            {
+                connection.Connection.Open();
+                Assert.AreEqual(System.Data.ConnectionState.Open, connection.Connection.State);
+                if (connection.Connection.State != System.Data.ConnectionState.Closed)
+                    connection.Connection.Close();
+            }
+        }
     }
 }
