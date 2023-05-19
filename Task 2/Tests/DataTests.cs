@@ -51,7 +51,6 @@ namespace Tests
            database.DeleteState(2);
            Assert.AreEqual(database.CountStateList(), 0);
        }
-
         [TestMethod]
         public void TestDatabaseConnection()
         {
