@@ -1,8 +1,8 @@
 ﻿using Data.API;
 using Data.Implementation;
-using Logic.Implementation;
+using Service.Implementation;
 
-namespace Logic.API
+namespace Service.API
 {
     public abstract class IBusinessLogic
     {

@@ -1,29 +1,35 @@
 using Service.Implementation;
 using Data.API;
+using Data.Implementation;
+
 namespace Service.API;
 
-public interface IService
+public abstract class IService
 {
-//public static IService Create() => new DataService(IDataContext.CreateContext());
+    //public static IService Create() => new DataService(IDataRepository.CreateDatabase());
 
-Task<IEnumerable<ICustomer>> GetAllCustomers();
-Task AddCustomer(ICustomer c);
-Task DeleteCustomer(int id);
+    public abstract Task<IEnumerable<ICustomer>> GetAllCustomers();
+    public abstract Task AddCustomerAsync(ICustomer c);
+    public abstract Task DeleteCustomerAsync(int id);
 
-Task<IEnumerable<IProduct>> GetAllProducts();
-Task AddProduct(IProduct c);
-Task DeleteProduct(int id);
+    public abstract Task<IEnumerable<IProduct>> GetAllProducts();
+    public abstract Task AddProductAsync(int id, string name, double price);
+    public abstract Task DeleteProductAsync(int id);
 
-Task<IEnumerable<IOrder>> GetAllOrders();
-Task AddOrder(IOrder c);
-Task DeleteOrder(int id);
+    //public abstract Task<IEnumerable<IOrder>> GetAllOrders();
+    public abstract Task AddOrderAsync(IOrder c);
+    public abstract Task DeleteOrderAsync(int id);
 
-Task AddState(IState s);
-Task DeleteState(int id);
+    public abstract Task AddStateAsync(IState s);
+    public abstract Task DeleteStateAsync(int id);
 
-// Task AddSell(ISell s);
-// Task DeleteSell(int id);
+    // Task AddSell(ISell s);
+    // Task DeleteSell(int id);
 
-// Task AddBuy(IBuy b);
-// Task DeleteBuy(int id);
+    // Task AddBuy(IBuy b);
+    // Task DeleteBuy(int id);
+    public static IService Create()
+    {
+        return new DataService();
+    }
 }

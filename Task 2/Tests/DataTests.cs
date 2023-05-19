@@ -3,7 +3,7 @@ using System;
 using Data;
 using Data.API;
 using Data.Implementation;
-using Logic.Implementation;
+using Service.Implementation;
 using System.Data.SqlTypes;
 
 namespace Tests
@@ -18,6 +18,7 @@ namespace Tests
             DataRepository database = new DataRepository(sqlString);
             database.AddCustomer(1, "John", "John");
             Assert.AreEqual("John", database.GetCustomer(1).FirstName);
+            Assert.AreEqual(1, database.GetCustomerList().Count);
             database.DeleteCustomer(1);
             Assert.AreEqual(database.CountCustomerList(), 0);
         }
@@ -37,6 +38,7 @@ namespace Tests
             DataRepository database = new DataRepository(sqlString);
             database.AddProduct(1, "Red Apple", 0.5);
             Assert.AreEqual("Red Apple", database.GetProduct(1).Name);
+            Assert.AreEqual(1, database.GetProductList().Count);
             database.DeleteProduct(1);
             Assert.AreEqual(database.CountProductList(), 0);
         }
@@ -49,5 +51,17 @@ namespace Tests
            database.DeleteState(2);
            Assert.AreEqual(database.CountStateList(), 0);
        }
+
+        [TestMethod]
+        public void TestDatabaseConnection()
+        {
+            using (LinqToSqlDataContext connection = new LinqToSqlDataContext(sqlString))
+            {
+                connection.Connection.Open();
+                Assert.AreEqual(System.Data.ConnectionState.Open, connection.Connection.State);
+                if (connection.Connection.State != System.Data.ConnectionState.Closed)
+                    connection.Connection.Close();
+            }
+        }
     }
 }

@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Data.API;
-namespace Data.Implementation
+
+namespace Data
 {
     internal class Product : IProduct
     {

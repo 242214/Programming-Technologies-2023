@@ -104,6 +104,16 @@ public class DataRepository : IDataRepository
         }
         return Map(customer);
     }
+    public override List<ICustomer> GetCustomerList()
+    {
+        List<ICustomer> customers = new List<ICustomer>();
+        var v = from s in dc.CUSTOMERs select s;
+        foreach (var item in v)
+        {
+            customers.Add(Map(item));
+        }
+        return customers;
+    }
     public override void DeleteCustomer(int Id)
     {
         CUSTOMER customer = dc.CUSTOMERs.Single(CUSTOMER => CUSTOMER.Id == Id);
@@ -184,7 +194,6 @@ public class DataRepository : IDataRepository
     }
     public override IProduct GetProduct(int Id)
     {
-        //PRODUCT product = dc.PRODUCTs.FirstOrDefault(c => c.Id.Equals(Id));
         PRODUCT product = new PRODUCT();
         var v = from s in dc.PRODUCTs
                 where s.Id == Id
@@ -199,7 +208,13 @@ public class DataRepository : IDataRepository
     }
     public override List<IProduct> GetProductList()
     {
-        return datacontext.ProductList;
+        List<IProduct > products = new List<IProduct>();
+        var v = from s in dc.PRODUCTs select s;
+        foreach(var item in v)
+        {   
+            products.Add(Map(item));
+        }
+        return products;
     }
     public override void DeleteProduct(int Id)
     {

@@ -1,5 +1,5 @@
 using Data.API;
-namespace Logic.Implementation;
+namespace Service.Implementation;
 
 internal class Buy : IBuy
 {
