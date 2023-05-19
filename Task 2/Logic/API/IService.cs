@@ -9,7 +9,7 @@ public abstract class IService
     //public static IService Create() => new DataService(IDataRepository.CreateDatabase());
 
     public abstract Task<IEnumerable<ICustomer>> GetAllCustomers();
-    public abstract Task AddCustomerAsync(ICustomer c);
+    public abstract Task AddCustomerAsync(int Id, string FirstName, string LastName);
     public abstract Task DeleteCustomerAsync(int id);
 
     public abstract Task<IEnumerable<IProduct>> GetAllProducts();
