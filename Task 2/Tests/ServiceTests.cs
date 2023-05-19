@@ -26,6 +26,8 @@ namespace Tests
             s.DeleteProductAsync(1);
 
         }
+        
+
 
         [TestMethod]
         public void TestStateAsync() 
