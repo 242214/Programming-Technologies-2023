@@ -34,11 +34,11 @@ namespace Service.Implementation
                 dataRepository.AddProduct(Id, Name, Price);
             });
         }
-        public async override Task AddStateAsync(IState s)
+        public async override Task AddStateAsync(int Id, int ProductId, int Amount, bool isAvailable)
         {
             await Task.Run(() =>
             {
-                dataRepository.AddState(s.Id, s.ProductId, s.Amount, s.isAvailable);
+                dataRepository.AddState(Id, ProductId, Amount, isAvailable);
             });
         }
         public async override Task AddCustomerAsync(int Id, string FirstName, string LastName)

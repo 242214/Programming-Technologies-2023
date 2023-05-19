@@ -20,7 +20,7 @@ public abstract class IService
     public abstract Task AddOrderAsync(IOrder c);
     public abstract Task DeleteOrderAsync(int id);
 
-    public abstract Task AddStateAsync(IState s);
+    public abstract Task AddStateAsync(int Id, int ProductId, int Amount, bool isAvailable);
     public abstract Task DeleteStateAsync(int id);
 
     // Task AddSell(ISell s);
