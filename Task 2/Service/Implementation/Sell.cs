@@ -1,18 +1,18 @@
 using Data.API;
-namespace Logic.Implementation;
+namespace Service.Implementation;
 
-internal class Buy : IBuy
+public class Sell : ISell
 {
     public int Id { get; set; }
     public int ProductId { get; set; }
     public int Amount { get; set; }
     public int UserId { get; set; }
 
-    public Buy(int Id, int ProductId, int Amount)
+    public Sell(int Id, int ProductId, int Amount, int UserId)
     {
         this.Id = Id;
         this.ProductId = ProductId;
         this.Amount = Amount;
-        this.UserId = 0;
+        this.UserId = UserId;
     }
 }

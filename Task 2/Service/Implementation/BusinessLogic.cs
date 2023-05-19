@@ -1,8 +1,8 @@
 ﻿using System;
 using Data.API;
 using Data.Implementation;
-using Logic.API;
-namespace Logic.Implementation;
+using Service.API;
+namespace Service.Implementation;
 
 internal class BusinessLogic : IBusinessLogic
 { 
