@@ -1,6 +1,6 @@
 global using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Logic.API;
-using Logic.Implementation;
+using Service.API;
+using Service.Implementation;
 namespace Tests
 {
     [TestClass]
