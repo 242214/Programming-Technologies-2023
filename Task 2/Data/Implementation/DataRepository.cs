@@ -135,11 +135,11 @@ public class DataRepository : IDataRepository
         }
         return new Order(order.Id, order.ProductId, order.Amount, order.UserId);
     }
-    public override void AddOrder(IOrder o)
+    public override void AddOrder(int Id, int ProductId, int Amount, int UserId)
     {
         ORDER newOrder = new ORDER
         {
-            Id = o.Id, ProductId = o.ProductId, Amount = o.Amount,  UserId = o.UserId
+            Id = Id, ProductId = ProductId, Amount = Amount,  UserId = UserId
         };
         dc.ORDERs.InsertOnSubmit(newOrder);
         dc.SubmitChanges();
