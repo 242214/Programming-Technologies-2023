@@ -7,7 +7,7 @@ using Service.API;
 
 namespace Presentation.Model.API
 {
-    public class StateModel : Service.API.IState
+    public interface IStateModel : Service.API.IState
     {
         public int Id { get; set; }
         public int ProductId { get; set;  }
