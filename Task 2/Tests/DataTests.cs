@@ -16,9 +16,9 @@ namespace Tests
         public void CheckAddingDeletingCustomer()
         {
             DataRepository database = new DataRepository(sqlString);
-            //database.AddCustomer(1, "John", "John");
-            //Assert.AreEqual("John", database.GetCustomer(1).FirstName);
-            //Assert.AreEqual(1, database.GetCustomerList().Count);
+            database.AddCustomer(1, "John", "John");
+            Assert.AreEqual("John", database.GetCustomer(1).FirstName);
+            Assert.AreEqual(1, database.GetCustomerList().Count);
             database.DeleteCustomer(1);
             Assert.AreEqual(database.CountCustomerList(), 0);
         }
@@ -26,8 +26,8 @@ namespace Tests
         public void CheckAddingDeletingOrder()
         {
             DataRepository database = new DataRepository(sqlString);
-            IOrder order1 = new Order(1, 1, 2, 1);
-            database.AddOrder(order1);
+            //IOrder order1 = new Order(1, 1, 2, 1);
+            database.AddOrder(1, 1, 2, 1);
             Assert.AreEqual(1, database.GetOrder(1).ProductId);
             database.DeleteOrder(1);
             Assert.AreEqual(database.CountOrderList(), 0);
