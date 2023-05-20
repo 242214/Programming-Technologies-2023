@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Service.API;
+// using Service.API;
+using Presentation.Model.API;
 namespace Presentation.Model
 {
-    public class ProductModel : IProduct
+    public class ProductModel : IProductModel
     {
     public int Id { get; set; }
     public string Name { get; set; }
