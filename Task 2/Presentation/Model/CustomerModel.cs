@@ -21,13 +21,13 @@ public class CustomerModel : ICustomer
     }
 
     public async Task AddAsync()
-        {
-            await service.AddCustomer(this);
-        }
+    {
+        await service.AddCustomerAsync(Id, FirstName, LastName);
+    }
 
-        public async Task DeleteAsync()
-        {
-            await service.DeleteCustomer(this.Id);
-        }
+    public async Task DeleteAsync()
+    {
+        await service.DeleteCustomerAsync(this.Id);
+    }
 }
 }

@@ -27,12 +27,12 @@ namespace Presentation.Model
 
         public async Task AddAsync()
         {
-            await Servicee.AddOrder(this);
+            await Servicee.AddOrderAsync(this);
         }
 
         public async Task DeleteAsync()
         {
-            await Servicee.DeleteOrder(this.Id);
+            await Servicee.DeleteOrderAsync(this.Id);
         }
     }
 }

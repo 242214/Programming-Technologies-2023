@@ -23,7 +23,7 @@ namespace Presentation.Model
 
      public async Task AddAsync()
     {
-        //await Servicee.AddProductAsync(this);
+        await Servicee.AddProductAsync(Id, Name, Price);
     }
 
     public async Task DeleteAsync()
