@@ -8,16 +8,16 @@ public abstract class IService
 {
     //public static IService Create() => new DataService(IDataRepository.CreateDatabase());
 
-    public abstract Task<IEnumerable<ICustomer>> GetAllCustomers();
+    public abstract Task<IEnumerable<Data.API.ICustomer>> GetAllCustomers();
     public abstract Task AddCustomerAsync(int Id, string FirstName, string LastName);
     public abstract Task DeleteCustomerAsync(int id);
 
-    public abstract Task<IEnumerable<IProduct>> GetAllProducts();
+    public abstract Task<IEnumerable<Data.API.IProduct>> GetAllProducts();
     public abstract Task AddProductAsync(int Id, string Name, double Price);
     public abstract Task DeleteProductAsync(int id);
 
     //public abstract Task<IEnumerable<IOrder>> GetAllOrders();
-    public abstract Task AddOrderAsync(IOrder c);
+    public abstract Task AddOrderAsync(int Id, int ProductId, int Amount, int UserId);
     public abstract Task DeleteOrderAsync(int id);
 
     public abstract Task AddStateAsync(int Id, int ProductId, int Amount, bool isAvailable);

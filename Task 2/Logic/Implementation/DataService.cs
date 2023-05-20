@@ -48,11 +48,11 @@ namespace Service.Implementation
                 dataRepository.AddCustomer(Id, FirstName, LastName);
             });
         }
-        public async override Task AddOrderAsync(IOrder o)
+        public async override Task AddOrderAsync(int Id, int ProductId, int Amount, int UserId)
         {
             await Task.Run(() =>
             {
-                dataRepository.AddOrder(o);
+                dataRepository.AddOrder(Id, ProductId, Amount, UserId);
             });
         }
         #endregion
@@ -92,12 +92,12 @@ namespace Service.Implementation
         #endregion
 
         #region Get All
-        public async override Task<IEnumerable<IProduct>> GetAllProducts()
+        public async override Task<IEnumerable<Data.API.IProduct>> GetAllProducts()
          {
             return dataRepository.GetProductList();
              //return dataRepository.GetProductList.Select(p => new ProductModel(p.Id, p.Name, p.Price, this)).ToList();
          }
-         public async override Task<IEnumerable<ICustomer>> GetAllCustomers()
+         public async override Task<IEnumerable<Data.API.ICustomer>> GetAllCustomers()
          {
             return dataRepository.GetCustomerList();
              //return dataContext.Customers.Select(c => new CustomerModel(this, c.Id, c.FirstName, c.LastName)).ToList();

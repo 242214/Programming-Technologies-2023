@@ -5,17 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
-using Data.API;
+using Service.API;
 
 namespace Presentation.ViewModel
 {
      public partial class OrderViewModel : ObservableObject
     {
         private IOrder _order;
-
-        public OrderViewModel()
-        {
-        }
 
         public OrderViewModel(IOrder order)
         {

@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Service.API;
-using Data.API;
 namespace Presentation.Model
 {
-public class CustomerModel : ICustomer
+public class CustomerModel : Service.API.ICustomer
 {
     public int Id { get; set; }
     public string FirstName { get; set; }

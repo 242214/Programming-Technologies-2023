@@ -2,16 +2,13 @@ using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Presentation.Model;
-using Data.API;
+using Service.API;
 
 namespace Presentation.ViewModel 
 {
     public partial class CustomerViewModel: ObservableObject
     {
         private ICustomer _customer;
-        public CustomerViewModel()
-        {
-        }
         public CustomerViewModel(ICustomer customer)
         {
             _customer = customer;

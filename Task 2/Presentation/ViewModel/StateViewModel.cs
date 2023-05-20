@@ -2,17 +2,13 @@ using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Presentation.Model;
-using Data.API;
+using Service.API;
 
 namespace Presentation.ViewModel
 {
     public partial class StateViewModel : ObservableObject
     {
         private IState _state;
-
-        public StateViewModel()
-        {
-        }
 
         public StateViewModel(IState state)
         {
