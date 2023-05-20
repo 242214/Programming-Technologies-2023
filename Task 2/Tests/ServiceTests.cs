@@ -20,6 +20,7 @@ namespace Tests
             Assert.IsNotNull(s.GetAllProducts());
             s.DeleteProductAsync(7);
             Assert.AreNotEqual(a, s.GetAllProducts());
+            s.DeleteProductAsync(7);
         }
         
         [TestMethod]
@@ -30,6 +31,7 @@ namespace Tests
             var a = s.GetAllCustomers();
             s.DeleteCustomerAsync(7);
             Assert.AreNotEqual(a, s.GetAllCustomers());
+            s.DeleteCustomerAsync(7);
         }
     }
 }

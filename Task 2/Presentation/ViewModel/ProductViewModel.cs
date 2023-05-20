@@ -10,11 +10,20 @@ namespace Presentation.ViewModel
 {
     public partial class ProductViewModel : ObservableObject
     {
+        //int Id;
+        //string Name;
+        //double Price;
         private IProduct _product;
 
         public ProductViewModel(IProduct product)
         {
             _product = product;
+        }
+        public ProductViewModel(int Id, string Name, double Price) 
+        {
+            _product.Id = Id;
+            _product.Name = Name;
+            _product.Price = Price;
         }
 
         public int Id

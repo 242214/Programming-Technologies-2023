@@ -36,10 +36,10 @@ namespace Presentation.ViewModel
                 OnPropertyChanged();
             } }
         private ICommand _addCustomerCommand;
-        public ICommand AddProductCommand => _addCustomerCommand ??= new AsyncRelayCommand(AddCustomer);
+        public ICommand AddCustomerCommand => _addCustomerCommand ??= new AsyncRelayCommand(AddCustomer);
 
-        private ICommand _deleteProductCommand;
-        public ICommand DeleteProductCommand => _deleteProductCommand ??= new AsyncRelayCommand(DeleteCustomer);
+        private ICommand _deleteCustomerCommand;
+        public ICommand DeleteCustomerCommand => _deleteCustomerCommand ??= new AsyncRelayCommand(DeleteCustomer);
 
         private async Task AddCustomer()
         {

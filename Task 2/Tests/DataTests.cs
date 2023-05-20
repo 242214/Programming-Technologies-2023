@@ -3,7 +3,7 @@ using System;
 using Data;
 using Data.API;
 using Data.Implementation;
-using Service.Implementation;
+//using Service.Implementation;
 using System.Data.SqlTypes;
 
 namespace Tests
@@ -18,9 +18,10 @@ namespace Tests
             DataRepository database = new DataRepository(sqlString);
             database.AddCustomer(1, "John", "John");
             Assert.AreEqual("John", database.GetCustomer(1).FirstName);
+            if(database.GetCustomerList().Count > 1) { database.DeleteCustomer(7); }
             Assert.AreEqual(1, database.GetCustomerList().Count);
             database.DeleteCustomer(1);
-            Assert.AreEqual(database.CountCustomerList(), 0);
+            Assert.AreEqual(0, database.CountCustomerList());
         }
         [TestMethod]
         public void CheckAddingDeletingOrder()
@@ -40,7 +41,7 @@ namespace Tests
             Assert.AreEqual("Red Apple", database.GetProduct(1).Name);
             Assert.AreEqual(1, database.GetProductList().Count);
             database.DeleteProduct(1);
-            Assert.AreEqual(database.CountProductList(), 0);
+            Assert.AreEqual(0, database.CountProductList());
         }
         [TestMethod]
        public void CheckAddingDeletingState()
