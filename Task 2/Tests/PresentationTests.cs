@@ -8,42 +8,34 @@ namespace Tests
     [TestClass]
     public class PresentationTests
     {
-        // private readonly BookInfoViewModel CatalogViewModel;
-
-        // private readonly UsersViewModel UsersViewModel;
-/*
-        private readonly ProductViewModel StateViewModel;
-
-        // private readonly ICatalog Catalog;
-
-        private static readonly ICustomer Customer = Substitute.For<ICustomer>();
-        private static readonly IState State = Substitute.For<IState>();
-        CustomerViewModel cvm = new CustomerViewModel(Customer);
-        StateViewModel svm = new StateViewModel(State);
-*/
-        /*[TestMethod]
-        public async Task AddCustomerTest()
+        // [TestMethod]
+        // public void ProductTest()
+        // {
+        //     var productViewModel = new ProductViewModel(1, "apple", 3.5);
+        //     Assert.AreEqual(1, productViewModel.Id);
+        //     Assert.AreEqual("apple", productViewModel.Name);
+        //     Assert.AreEqual(3.5, productViewModel.Price);
+        // }
+        [TestMethod]
+        public void TestCustomerViewModelWithMockCustomer()
         {
-            //await cvm.AddCustomerCommand.ExecuteAsync(null);
-            //await Customer.Received(1).AddAsync();
+            var mockCustomer = new MockCustomer();
+            var customerViewModel = new CustomerViewModel(mockCustomer);
+
+            customerViewModel.Name = "John Doe";
+
+            Assert.Equal("John Doe", customerViewModel.Name);
         }
 
         [TestMethod]
-        public async Task DeleteCustomerTest()
+        public void TestCustomerViewModelWithAnotherMockCustomer()
         {
-            //await cvm.DeleteCustomerCommand.ExecuteAsync(null);
-            //await Customer.Received(1).DeleteAsync();
-        }
-        */
+            var anotherMockCustomer = new AnotherMockCustomer();
+            var customerViewModel = new CustomerViewModel(anotherMockCustomer);
 
+            customerViewModel.Name = "Jane Smith";
 
-        [TestMethod]
-        public void ProductTest()
-        {
-            var productViewModel = new ProductViewModel(1, "apple", 3.5);
-            Assert.AreEqual(1, productViewModel.Id);
-            Assert.AreEqual("apple", productViewModel.Name);
-            Assert.AreEqual(3.5, productViewModel.Price);
+            Assert.Equal("Jane Smith", customerViewModel.Name);
         }
 
     }
