@@ -2,20 +2,18 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+//using System.Windows.Input;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
-using Data.API;
+using Service.API;
+using System.Windows.Input;
 
 namespace Presentation.ViewModel
 {
      public partial class OrderViewModel : ObservableObject
     {
         private IOrder _order;
-
-        public OrderViewModel()
-        {
-        }
 
         public OrderViewModel(IOrder order)
         {
@@ -52,16 +50,22 @@ namespace Presentation.ViewModel
                 _order.UserId = value;
                 OnPropertyChanged();
             } }
-        // [ICommand]
-        // private async Task AddOrder()
-        // {
-        //     await _product.AddAsync();
-        // }
-        // [ICommand]
-        // private async Task DeleteOrder()
-        // {
-        //     await _product.DeleteAsync();
-        // }
+        private ICommand _addOrderCommand;
+        public ICommand AddOrderCommand => _addOrderCommand ??= new AsyncRelayCommand(AddOrder);
+
+        private ICommand _deleteOrderCommand;
+        public ICommand DeleteOrderCommand => _deleteOrderCommand ??= new AsyncRelayCommand(DeleteOrder);
+
+        private async Task AddOrder()
+        {
+            await _order.AddAsync();
+        }
+
+        private async Task DeleteOrder()
+        {
+            await _order.DeleteAsync();
+        }
+       
 
     }
 }

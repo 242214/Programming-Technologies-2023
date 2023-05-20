@@ -1,17 +1,15 @@
 using System.Threading.Tasks;
+using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Presentation.Model;
-using Data.API;
+using Service.API;
 
 namespace Presentation.ViewModel 
 {
     public partial class CustomerViewModel: ObservableObject
     {
         private ICustomer _customer;
-        public CustomerViewModel()
-        {
-        }
         public CustomerViewModel(ICustomer customer)
         {
             _customer = customer;
@@ -37,16 +35,21 @@ namespace Presentation.ViewModel
                 _customer.LastName = value;
                 OnPropertyChanged();
             } }
-        // //[ICommand]
-        // private async Task AddCustomer()
-        // {
-        //     await _customer.AddAsync();
-        // }
-        // //[ICommand]
-        // private async Task DeleteCustomer()
-        // {
-        //     await _customer.DeleteAsync();
-        // }
+        private ICommand _addCustomerCommand;
+        public ICommand AddProductCommand => _addCustomerCommand ??= new AsyncRelayCommand(AddCustomer);
+
+        private ICommand _deleteProductCommand;
+        public ICommand DeleteProductCommand => _deleteProductCommand ??= new AsyncRelayCommand(DeleteCustomer);
+
+        private async Task AddCustomer()
+        {
+            await _customer.AddAsync();
+        }
+
+        private async Task DeleteCustomer()
+        {
+            await _customer.DeleteAsync();
+        }
 
     }
 }

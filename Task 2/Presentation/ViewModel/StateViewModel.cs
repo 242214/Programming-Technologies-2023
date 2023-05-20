@@ -1,18 +1,15 @@
 using System.Threading.Tasks;
+using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Presentation.Model;
-using Data.API;
+using Service.API;
 
 namespace Presentation.ViewModel
 {
     public partial class StateViewModel : ObservableObject
     {
         private IState _state;
-
-        public StateViewModel()
-        {
-        }
 
         public StateViewModel(IState state)
         {
@@ -51,16 +48,21 @@ namespace Presentation.ViewModel
                 _state.isAvailable = value;
                 OnPropertyChanged();
             } }
-        // [ICommand]
-        // private async Task AddState()
-        // {
-        //     await _product.AddAsync();
-        // }
-        // [ICommand]
-        // private async Task DeleteState()
-        // {
-        //     await _product.DeleteAsync();
-        // }
+        private ICommand _addStateCommand;
+        public ICommand AddStatetCommand => _addStateCommand ??= new AsyncRelayCommand(AddState);
+
+        private ICommand _deleteStateCommand;
+        public ICommand DeleteStateCommand => _deleteStateCommand ??= new AsyncRelayCommand(DeleteState);
+
+        private async Task AddState()
+        {
+            await _state.AddAsync();
+        }
+
+        private async Task DeleteState()
+        {
+            await _state.DeleteAsync();
+        }
 
     }
 }

@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Service.API;
-using Data.API;
 
 namespace Presentation.Model
 {
-    public class OrderModel : IOrder
+    public class OrderModel : Service.API.IOrder
     {
         public int Id { get; set; }
         public int ProductId { get; set; }
@@ -27,7 +26,7 @@ namespace Presentation.Model
 
         public async Task AddAsync()
         {
-            await Servicee.AddOrderAsync(this);
+            await Servicee.AddOrderAsync(Id, ProductId, Amount, UserId);
         }
 
         public async Task DeleteAsync()

@@ -1,19 +1,16 @@
 
 using System.Threading.Tasks;
+using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Presentation.Model;
-using Data.API;
+using Service.API;
 
 namespace Presentation.ViewModel
 {
     public partial class ProductViewModel : ObservableObject
     {
         private IProduct _product;
-
-        public ProductViewModel()
-        {
-        }
 
         public ProductViewModel(IProduct product)
         {
@@ -43,16 +40,21 @@ namespace Presentation.ViewModel
                 _product.Price = value;
                 OnPropertyChanged();
             } }
-        // [ICommand]
-        // private async Task AddProduct()
-        // {
-        //     await _product.AddAsync();
-        // }
-        // [ICommand]
-        // private async Task DeleteProduct()
-        // {
-        //     await _product.DeleteAsync();
-        // }
+        private ICommand _addProductCommand;
+        public ICommand AddProductCommand => _addProductCommand ??= new AsyncRelayCommand(AddProduct);
+
+        private ICommand _deleteProductCommand;
+        public ICommand DeleteProductCommand => _deleteProductCommand ??= new AsyncRelayCommand(DeleteProduct);
+
+        private async Task AddProduct()
+        {
+            await _product.AddAsync();
+        }
+
+        private async Task DeleteProduct()
+        {
+            await _product.DeleteAsync();
+        }
 
     }
 }
