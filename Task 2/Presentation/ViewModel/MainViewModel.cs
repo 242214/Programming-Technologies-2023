@@ -11,45 +11,60 @@ namespace Presentation.ViewModel
 {
     public partial class MainViewModel : ObservableObject
     {
-        //     public MainViewModel() 
-        // {
-        //         //Data = IDataRepository.CreateDatabase();
-        //         CustomerViewModel = new CustomerViewModel(new CustomerModel());
-        //     }
         private readonly IService service;
-        public CustomerViewModel CustomerVM { get; }
-        public OrderViewModel OrderVM { get; }
-        public ProductViewModel ProductVM { get; }
-        public StateViewModel StateVM { get; }
+            public CustomerViewModel CustomerVM { get; }
+            public OrderViewModel OrderVM { get; }
+            public ProductViewModel ProductVM { get; }
+            public StateViewModel StateVM { get; }
 
-        public MainViewModel(ICustomer customer, IOrder order, IProduct product, IState state)
-        {
+            public MainViewModel(ICustomer customer, IOrder order, IProduct product, IState state)
+            {
             service = IService.Create();
-            CustomerVM = new CustomerViewModel(customer);
-            OrderVM = new OrderViewModel(order);
-            ProductVM = new ProductViewModel(product);
-            StateVM = new StateViewModel(state);
-        }
+                CustomerVM = new CustomerViewModel(customer);
+                OrderVM = new OrderViewModel(order);
+                ProductVM = new ProductViewModel(product);
+                StateVM = new StateViewModel(state);
+            }
 
         public MainViewModel()
         {
         }
 
         [ObservableProperty]
-        private MainViewModel _activeProduct;
-        private int _selectedProduct;
+            private MainViewModel _activeProduct;
+            private int _selectedProduct;
 
-        public int SelectedProduct
+            public int SelectedProduct
+            {
+                get => _selectedProduct;
+                set
+                {
+                    _selectedProduct = value;
+                    OnPropertyChanged();
+                    try
+                    {
+                        _activeProduct = new MainViewModel();
+                        OnPropertyChanged(nameof(ActiveProduct));
+                    }
+                    catch (ArgumentOutOfRangeException) { }
+                }
+            }
+
+        [ObservableProperty]
+        private MainViewModel _activeCustomer;
+        private int _selectedCustomer;
+
+        public int SelectedCustomer
         {
-            get => _selectedProduct;
+            get => _selectedCustomer;
             set
             {
-                _selectedProduct = value;
+                _selectedCustomer = value;
                 OnPropertyChanged();
                 try
                 {
-                    _activeProduct = new MainViewModel();
-                    OnPropertyChanged(nameof(ActiveProduct));
+                    _activeCustomer = new MainViewModel();
+                    OnPropertyChanged(nameof(ActiveCustomer));
                 }
                 catch (ArgumentOutOfRangeException) { }
             }
