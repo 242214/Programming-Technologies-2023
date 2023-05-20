@@ -18,9 +18,9 @@ namespace Presentation.View
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class Customer : UserControl
+    public partial class CustomerInfo : UserControl
     {
-        public Customer()
+        public CustomerInfo()
         {
             InitializeComponent();
         }
