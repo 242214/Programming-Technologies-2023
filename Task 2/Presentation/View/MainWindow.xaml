@@ -3,10 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:uc="clr-namespace:Presentation.View"
         xmlns:local="clrs-namespace:Presentation.View"
         xmlns:viem="clr-namespace:Presentation.ViewModel"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="850" Width="780">
     <Window.DataContext>
         <viem:MainViewModel/>
     </Window.DataContext>
@@ -18,7 +19,7 @@
 
         <Grid Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
             <Rectangle HorizontalAlignment="Left" Height ="25" Width ="500" />
-            <Rectangle HorizontalAlignment="Left" Height="17" Margin="10,14,0,0" Stroke="Black" VerticalAlignment="Top" Width="634" Grid.ColumnSpan="2"/>
+            <Rectangle HorizontalAlignment="Left" Height="17" Margin="10,14,0,0" Stroke="Black" VerticalAlignment="Top" Width="634" Grid.ColumnSpan="2" Fill="Bisque"/>
 
             <TextBlock HorizontalAlignment="Left" Height="17" Margin="77,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="98" RenderTransformOrigin="0.687,3.508" Grid.Column="1"><Run Language="pl-pl" Text="VIEW THE TABLES"/></TextBlock>
             <ListView SelectedIndex="{Binding SelectedProduct}" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,88,450,301"  Grid.ColumnSpan="2">
@@ -41,7 +42,10 @@
             </ListView>
             <TextBlock HorizontalAlignment="Left" Height="17" Margin="121,58,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="98" RenderTransformOrigin="0.687,3.508"><Run Language="pl-pl" Text="PRODUCTS INFO"/></TextBlock>
             <TextBlock HorizontalAlignment="Left" Height="17" Margin="480,58,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="104" RenderTransformOrigin="0.687,3.508"><Run Language="pl-pl" Text="CUSTOMERS INFO"/></TextBlock>
-
+            <uc:Customer Height="115" Width="718" Margin="10,317,72,167"/>
+            <uc:Product Height="115" Width="718" Margin="10,437,72,47"/>
+            <uc:Buy Height="115" Width="718" Margin="10,576,52,-92"/>
+            <uc:Sell Height="115" Width="718" Margin="10,691,52,-207"/>
         </Grid>
     </StackPanel>
 </Window>

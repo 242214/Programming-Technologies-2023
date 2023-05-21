@@ -5,17 +5,17 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:viem="clr-namespace:Presentation.ViewModel"
              xmlns:local="clr-namespace:Presentation.View"
-             mc:Ignorable="d" Height="128" Width="661">
+             mc:Ignorable="d" Height="115" Width="718">
     <Grid Margin="0,0,0,10">
-        <Rectangle HorizontalAlignment="Left" Height="17" Margin="10,10,0,0" Stroke="Black" VerticalAlignment="Top" Width="636" Fill="Khaki"/>
+        <Rectangle HorizontalAlignment="Center" Height="17" Margin="0,10,0,0" Stroke="Black" VerticalAlignment="Top" Width="640" Fill="Khaki"/>
         <TextBlock HorizontalAlignment="Left" Height="17" Margin="280,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" RenderTransformOrigin="-1.005,0.508"><Run Language="pl-pl" Text="SELL TO CUSTOMER"/></TextBlock>
         <TextBox HorizontalAlignment="Left" Text="{Binding ProductId}" Height="20" Margin="75,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="140" />
-        <TextBlock HorizontalAlignment="Left" Height="20" Margin="10,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="70"><Run Language="pl-pl" Text="Product " Foreground="White"/><Run Text="ID" Foreground="White"/><Run Text=":" Foreground="White"/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Height="20" Margin="223,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="70"><Run Language="pl-pl" Text="Customer ID" Foreground="White"/><Run Text=":" Foreground="White"/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Height="20" Margin="453,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="70"><Run Language="pl-pl" Text="Amount" Foreground="White"/><Run Text=":" Foreground="White"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Height="20" Margin="10,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="70"><Run Language="pl-pl" Text="Product " Foreground="Gray"/><Run Text="ID" Foreground="Gray"/><Run Text=":" Foreground="Gray"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Height="20" Margin="223,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="70"><Run Language="pl-pl" Text="Customer ID" Foreground="Gray"/><Run Text=":" Foreground="Gray"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Height="20" Margin="453,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="70"><Run Language="pl-pl" Text="Amount" Foreground="Gray"/><Run Text=":" Foreground="Gray"/></TextBlock>
         <TextBox HorizontalAlignment="Left" Text="{Binding UserId}" Height="20" Margin="297,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="140" />
         <TextBox HorizontalAlignment="Left" Text="{Binding Amount}" Height="20" Margin="504,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="140" />
-        <Button Content="Sell" HorizontalAlignment="Left" Command="{Binding SellCommand}" Height="20" Margin="10,78,0,0" VerticalAlignment="Top" Width="636" />
+        <Button Content="Sell" HorizontalAlignment="Center" Command="{Binding SellCommand}" Height="20" Margin="0,78,0,0" VerticalAlignment="Top" Width="640" />
 
     </Grid>
 </UserControl>

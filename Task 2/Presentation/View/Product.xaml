@@ -5,16 +5,17 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:viem="clr-namespace:Presentation.ViewModel"
              xmlns:local="clr-namespace:Presentation.View"
-             mc:Ignorable="d" Height="195" Width="718">
-    <Grid Margin="0,0,10,88">
+             mc:Ignorable="d" Height="115" Width="718">
+    <Grid Margin="0,0,0,0">
         <Rectangle HorizontalAlignment="Center" Height="17" Margin="0,19,0,0" Stroke="Black" VerticalAlignment="Top" Width="640" Fill="Aquamarine"/>
         <TextBlock HorizontalAlignment="Left" Height="17" Margin="309,19,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="65"><Run Language="pl-pl" Text="PRODUCT"/></TextBlock>
-        <Button Content="Add" Command="{Binding AddProductCommand}" HorizontalAlignment="Left" Height="20" Margin="220,86,0,0" VerticalAlignment="Top" Width="308"/>
+        <Button Content="Add" Command="{Binding AddProductCommand}" HorizontalAlignment="Left" Height="20" Margin="68,81,0,0" VerticalAlignment="Top" Width="236"/>
         <TextBox HorizontalAlignment="Left" Text="{Binding Id}" Height="20" Margin="85,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="157" />
-        <TextBlock HorizontalAlignment="Left" Height="20" Margin="14,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="70"><Run Language="pl-pl" Text="Product" Foreground="White"/><Run Text=" ID" Foreground="White"/><Run Text=":" Foreground="White"/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Height="20" Margin="254,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="74"><Run Language="pl-pl" Text="Name" Foreground="White"/><Run Text=":" Foreground="White"/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Height="20" Margin="484,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="74"><Run Language="pl-pl" Text="Price" Foreground="White"/><Run Text=":" Foreground="White"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Height="20" Margin="14,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="70"><Run Language="pl-pl" Text="Product" Foreground="Gray"/><Run Text=" ID" Foreground="Gray"/><Run Text=":" Foreground="Gray"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Height="20" Margin="254,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="74"><Run Language="pl-pl" Text="Name" Foreground="Gray"/><Run Text=":" Foreground="Gray"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Height="20" Margin="484,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="74"><Run Language="pl-pl" Text="Price" Foreground="Gray"/><Run Text=":" Foreground="Gray"/></TextBlock>
         <TextBox HorizontalAlignment="Left" Text="{Binding Name}" Height="20" Margin="299,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="157" />
         <TextBox HorizontalAlignment="Left" Text="{Binding Price}" Height="20" Margin="519,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="157" />
+        <Button Content="Delete" Command="{Binding DeleteProductCommand}" HorizontalAlignment="Left" Height="20" Margin="409,81,0,0" VerticalAlignment="Top" Width="224"  RenderTransformOrigin="0.5,0.5"/>
     </Grid>
 </UserControl>

@@ -14,6 +14,9 @@ namespace Presentation.ViewModel
         {
             _customer = customer;
         }
+        public CustomerViewModel()
+        {
+        }
         public int CustomerId {
             get =>  _customer.Id;
             set
