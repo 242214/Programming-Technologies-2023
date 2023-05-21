@@ -13,8 +13,8 @@ public interface ICustomerModel : Service.API.ICustomer
     public string LastName { get; set; }
     public IService service {get; }
 
-    public async Task AddAsync();
+    public Task AddAsync();
 
-    public async Task DeleteAsync();
+    public Task DeleteAsync();
 }
 }

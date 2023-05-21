@@ -15,7 +15,7 @@ namespace Presentation.Model.API
         public bool isAvailable { get; set; }
         public IService Servicee { get; }
 
-        public async Task AddAsync();
-        public async Task DeleteAsync();
+        public Task AddAsync();
+        public Task DeleteAsync();
     }
 }
