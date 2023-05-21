@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Service.API;
+// using Service.API;
+using Presentation.Model.API;
 
 namespace Presentation.Model
 {
-    public class StateModel : IState
+    public class StateModel : IStateModel
     {
         public StateModel(int Id, int productId, int amount, IService service)
         {
