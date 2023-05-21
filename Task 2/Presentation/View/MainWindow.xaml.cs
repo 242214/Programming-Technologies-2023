@@ -22,7 +22,7 @@ namespace Presentation.View
     {
         public MainWindow()
         {
-            //InitializeComponent();
+            InitializeComponent();
         }
     }
 }
