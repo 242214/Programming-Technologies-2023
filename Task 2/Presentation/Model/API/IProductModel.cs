@@ -13,7 +13,7 @@ namespace Presentation.Model.API
     public double Price { get; set; }
     public IService Servicee { get; }
 
-    public async Task AddAsync();
-    public async Task DeleteAsync();
+    public Task AddAsync();
+    public Task DeleteAsync();
     }
 }

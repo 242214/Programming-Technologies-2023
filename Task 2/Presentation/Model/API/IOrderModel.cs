@@ -15,7 +15,7 @@ namespace Presentation.Model.API
         public int UserId { get; set; }
         public IService Servicee { get; }
         
-        public async Task AddAsync();
-        public async Task DeleteAsync();
+        public Task AddAsync();
+        public Task DeleteAsync();
     }
 }
