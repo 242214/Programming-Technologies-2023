@@ -1,4 +1,4 @@
-using Presentation.ViewModel;
+﻿using Presentation.ViewModel;
 using Service.API;
 using NSubstitute;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -9,40 +9,40 @@ namespace Tests
     public class PresentationTests
     {
         public class MockCustomer : ICustomer
-    {
-        public int Id { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-
-        public Task AddAsync()
         {
-            return Task.CompletedTask;
+            public int Id { get; set; }
+            public string FirstName { get; set; }
+            public string LastName { get; set; }
+
+            public Task AddAsync()
+            {
+                return Task.CompletedTask;
+            }
+
+            public Task DeleteAsync()
+            {
+                return Task.CompletedTask;
+            }
         }
 
-        public Task DeleteAsync()
+        public class AnotherMockCustomer : ICustomer
         {
-            return Task.CompletedTask;
+            public int Id { get; set; }
+            public string FirstName { get; set; }
+            public string LastName { get; set; }
+
+            public Task AddAsync()
+            {
+                return Task.CompletedTask;
+            }
+
+            public Task DeleteAsync()
+            {
+                return Task.CompletedTask;
+            }
         }
-    }
 
-    public class AnotherMockCustomer : ICustomer
-    {
-        public int Id { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
 
-        public Task AddAsync()
-        {
-            return Task.CompletedTask;
-        }
-
-        public Task DeleteAsync()
-        {
-            return Task.CompletedTask;
-        }
-    }
-
-   
         [TestMethod]
         public void TestCustomerViewModelWithMockCustomer()
         {
