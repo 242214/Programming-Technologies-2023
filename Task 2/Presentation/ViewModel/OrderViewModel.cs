@@ -36,13 +36,22 @@ namespace Presentation.ViewModel
                 _order.ProductId = value;
                 OnPropertyChanged();
             } }
-        public int Amount { 
-            get => _order.Amount;
+        public int Buy { 
+            get => _order.Buy;
             set
             {
-                _order.Amount = value;
+                _order.Buy = value;
                 OnPropertyChanged();
             } }
+        public int Sell
+        {
+            get => _order.Sell;
+            set
+            {
+                _order.Sell = value;
+                OnPropertyChanged();
+            }
+        }
         public int UserId { 
             get => _order.UserId;
             set

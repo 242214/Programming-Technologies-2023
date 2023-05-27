@@ -11,7 +11,7 @@ public abstract class IDataRepository
     public abstract ICustomer GetCustomer(int Id);
     public abstract List<ICustomer> GetCustomerList();
     public abstract void DeleteCustomer(int Id);
-    public abstract void AddOrder(int Id, int ProductId, int Amount, int UserId);
+    public abstract void AddOrder(int Id, int ProductId, int Buy, int Sell, int UserId);
     public abstract IOrder GetOrder(int Id);
     public abstract void DeleteOrder(int Id);
     public abstract void AddProduct(int Id, string Name, double Price);

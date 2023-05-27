@@ -133,13 +133,13 @@ public class DataRepository : IDataRepository
         {
             return null;
         }
-        return new Order(order.Id, order.ProductId, order.Amount, order.UserId);
+        return new Order(order.Id, order.ProductId, order.Buy, order.Sell, order.UserId);
     }
-    public override void AddOrder(int Id, int ProductId, int Amount, int UserId)
+    public override void AddOrder(int Id, int ProductId, int Buy, int Sell, int UserId)
     {
         ORDER newOrder = new ORDER
         {
-            Id = Id, ProductId = ProductId, Amount = Amount,  UserId = UserId
+            Id = Id, ProductId = ProductId, Buy = Buy, Sell = Sell,  UserId = UserId
         };
         dc.ORDERs.InsertOnSubmit(newOrder);
         dc.SubmitChanges();
@@ -155,7 +155,8 @@ public class DataRepository : IDataRepository
         {
             order.Id = item.Id;
             order.ProductId = item.ProductId;
-            order.Amount = item.Amount;
+            order.Buy = item.Buy;
+            order.Sell = item.Sell;
             order.UserId = item.UserId;
         }
         return Map(order);

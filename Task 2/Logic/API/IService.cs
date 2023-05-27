@@ -17,7 +17,7 @@ public abstract class IService
     public abstract Task DeleteProductAsync(int id);
 
     //public abstract Task<IEnumerable<IOrder>> GetAllOrders();
-    public abstract Task AddOrderAsync(int Id, int ProductId, int Amount, int UserId);
+    public abstract Task AddOrderAsync(int Id, int ProductId, int Buy, int Sell, int UserId);
     public abstract Task DeleteOrderAsync(int id);
 
     public abstract Task AddStateAsync(int Id, int ProductId, int Amount, bool isAvailable);

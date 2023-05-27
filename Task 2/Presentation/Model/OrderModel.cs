@@ -12,22 +12,24 @@ namespace Presentation.Model
     {
         public int Id { get; set; }
         public int ProductId { get; set; }
-        public int Amount { get; set; }
+        public int Buy { get; set; }
+        public int Sell { get; set; }
         public int UserId { get; set; }
         public IService Servicee { get; }
         
-        public OrderModel(int Id, int ProductId, int Amount, int UserId, IService service)
+        public OrderModel(int Id, int ProductId, int Buy, int Sell, int UserId, IService service)
         {
             this.Id = Id;
             this.ProductId = ProductId;
-            this.Amount = Amount;
+            this.Buy = Buy;
+            this.Sell = Sell;
             this.UserId = UserId;
             Servicee = service;
         }
 
         public async Task AddAsync()
         {
-            await Servicee.AddOrderAsync(Id, ProductId, Amount, UserId);
+            await Servicee.AddOrderAsync(Id, ProductId, Buy, Sell, UserId);
         }
 
         public async Task DeleteAsync()

@@ -28,7 +28,7 @@ namespace Tests
         {
             DataRepository database = new DataRepository(sqlString);
             //IOrder order1 = new Order(1, 1, 2, 1);
-            database.AddOrder(1, 1, 2, 1);
+            database.AddOrder(1, 1, 2, 0, 1);
             Assert.AreEqual(1, database.GetOrder(1).ProductId);
             database.DeleteOrder(1);
             Assert.AreEqual(database.CountOrderList(), 0);

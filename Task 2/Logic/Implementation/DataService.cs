@@ -48,11 +48,11 @@ namespace Service.Implementation
                 dataRepository.AddCustomer(Id, FirstName, LastName);
             });
         }
-        public async override Task AddOrderAsync(int Id, int ProductId, int Amount, int UserId)
+        public async override Task AddOrderAsync(int Id, int ProductId, int Buy, int Sell, int UserId)
         {
             await Task.Run(() =>
             {
-                dataRepository.AddOrder(Id, ProductId, Amount, UserId);
+                dataRepository.AddOrder(Id, ProductId, Buy, Sell, UserId);
             });
         }
         #endregion

@@ -70,7 +70,7 @@ internal class DataContext : DbContext, IDataContext
 
     public async Task AddOrderAsync(IOrder order)
     {
-        ORDER orderToAdd = new() {Id = order.Id, ProductId = order.ProductId, Amount = order.Amount,  UserId = order.UserId};
+        ORDER orderToAdd = new() {Id = order.Id, ProductId = order.ProductId, Buy = order.Buy, Sell = order.Sell,  UserId = order.UserId};
         await _orders.AddAsync(orderToAdd);
         await SaveChangesAsync();
     }

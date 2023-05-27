@@ -19,8 +19,8 @@ internal class BusinessLogic : IBusinessLogic
                 a = 1;
                 database.GetState(i).Amount = database.GetState(i).Amount + Amount;
                 if(database.GetState(i).Amount > 0) database.GetState(i).isAvailable = true;
-                IBuy buy = new Buy(Id, ProductId, Amount);
-                database.AddOrder(buy.Id, buy.ProductId, buy.Amount, 0);
+                IBuy buy = new Buying(Id, ProductId, Amount);
+                database.AddOrder(buy.Id, buy.ProductId, buy.Buy, 0, 0);
             }
         }
         if(a==0) {
@@ -31,8 +31,8 @@ internal class BusinessLogic : IBusinessLogic
     {
         if (OrderAmount <= 0) throw new Exception("Product Amount cannot be equal or less than 0");
         if (!database.GetState(ProductId).isAvailable) throw new Exception("Not enough product");
-        ISell sell = new Sell(Id, ProductId, OrderAmount, UserId);
-        database.AddOrder(sell.Id, sell.ProductId, sell.Amount, sell.UserId);
+        ISell sell = new Selling(Id, ProductId, OrderAmount, UserId);
+        database.AddOrder(sell.Id, sell.ProductId, 0, sell.Sell, sell.UserId);
         database.GetState(ProductId).Amount = database.GetState(ProductId).Amount - OrderAmount;
         if (database.GetState(ProductId).Amount > 0) database.GetState(ProductId).isAvailable = true;
         else database.GetState(ProductId).isAvailable = false;

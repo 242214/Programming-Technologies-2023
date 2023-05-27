@@ -1,18 +1,20 @@
 using Data.API;
 namespace Service.Implementation;
 
-public class Sell : ISell
+internal class Buying : IBuy
 {
     public int Id { get; set; }
     public int ProductId { get; set; }
-    public int Amount { get; set; }
+    public int Buy { get; set; }
+    public int Sell { get; set; }
     public int UserId { get; set; }
 
-    public Sell(int Id, int ProductId, int Amount, int UserId)
+    public Buying(int Id, int ProductId, int Buy)
     {
         this.Id = Id;
         this.ProductId = ProductId;
-        this.Amount = Amount;
-        this.UserId = UserId;
+        this.Buy = Buy;
+        this.Sell = 0;
+        this.UserId = 0;
     }
 }
