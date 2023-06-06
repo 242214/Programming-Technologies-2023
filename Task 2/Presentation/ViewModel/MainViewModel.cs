@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Service.API;
+//using Service.API;
+using Presentation.API;
 using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace Presentation.ViewModel
 {
     public partial class MainViewModel : ObservableObject
     {
-        private readonly IService service;
+        private readonly IServiceModel service;
             public CustomerViewModel CustomerVM { get; }
             public OrderViewModel OrderVM { get; }
             public ProductViewModel ProductVM { get; }
@@ -18,7 +19,7 @@ namespace Presentation.ViewModel
 
             public MainViewModel(ICustomer customer, IOrder order, IProduct product, IState state)
             {
-            service = IService.Create();
+            service = IServiceModel.Create();
                 CustomerVM = new CustomerViewModel(customer);
                 OrderVM = new OrderViewModel(order);
                 ProductVM = new ProductViewModel(product);
