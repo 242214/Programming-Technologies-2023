@@ -3,19 +3,15 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Presentation.Model;
-using Service.API;
+using Presentation.Model.API;
 
 namespace Presentation.ViewModel
 {
     public partial class ProductViewModel : ObservableObject
     {
-        //int Id;
-        //string Name;
-        //double Price;
-        private IProduct _product;
+        private IProductModel _product;
 
-        public ProductViewModel(IProduct product)
+        public ProductViewModel(IProductModel product)
         {
             _product = product;
         }

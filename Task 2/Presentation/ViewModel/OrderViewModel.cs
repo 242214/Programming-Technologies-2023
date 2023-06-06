@@ -2,20 +2,19 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-//using System.Windows.Input;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
-using Service.API;
+using Presentation.Model.API;
 using System.Windows.Input;
 
 namespace Presentation.ViewModel
 {
      public partial class OrderViewModel : ObservableObject
     {
-        private IOrder _order;
+        private IOrderModel _order;
 
-        public OrderViewModel(IOrder order)
+        public OrderViewModel(IOrderModel order)
         {
             _order = order;
         }
@@ -40,7 +39,7 @@ namespace Presentation.ViewModel
             get => _order.Buy;
             set
             {
-                _order.Buy = value;
+                _order. Buy = value;
                 OnPropertyChanged();
             } }
         public int Sell

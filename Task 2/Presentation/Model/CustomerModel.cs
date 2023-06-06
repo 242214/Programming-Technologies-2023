@@ -7,7 +7,7 @@ using Service.API;
 using Presentation.Model.API;
 namespace Presentation.Model
 {
-public class CustomerModel : ICustomerModel
+internal class CustomerModel : ICustomerModel
 {
     public int Id { get; set; }
     public string FirstName { get; set; }

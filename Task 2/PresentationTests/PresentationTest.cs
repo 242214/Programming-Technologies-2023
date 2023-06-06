@@ -1,4 +1,5 @@
 ﻿using Presentation.ViewModel;
+using Presentation.Model.API;
 using Service.API;
 using NSubstitute;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

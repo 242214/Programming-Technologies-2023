@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Service.API;
+using Presentation.Model.API;
 using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace Presentation.ViewModel
@@ -16,7 +16,7 @@ namespace Presentation.ViewModel
             public ProductViewModel ProductVM { get; }
             public StateViewModel StateVM { get; }
 
-            public MainViewModel(ICustomer customer, IOrder order, IProduct product, IState state)
+            public MainViewModel(ICustomerModel customer, IOrderModel order, IProductModel product, IStateModel state)
             {
             service = IService.Create();
                 CustomerVM = new CustomerViewModel(customer);
