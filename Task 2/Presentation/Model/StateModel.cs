@@ -10,7 +10,7 @@ namespace Presentation.Model
 {
     public class StateModel : IStateModel
     {
-        public StateModel(int Id, int productId, int amount, IService service)
+        public StateModel(int Id, int productId, int amount, IServiceModel service)
         {
             this.Id=Id;
             ProductId = productId;
@@ -23,7 +23,7 @@ namespace Presentation.Model
         public int ProductId { get; set;  }
         public int Amount { get; set; }
         public bool isAvailable { get; set; }
-        public IService Servicee { get; }
+        public IServiceModel Servicee { get; }
 
         public async Task AddAsync()
         {

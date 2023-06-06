@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 using Service.API;
 namespace Presentation.Model.API
 {
-    public interface IProductModel : Service.API.IProduct
+    public interface IProductModel
     {
     public int Id { get; set; }
     public string Name { get; set; }
     public double Price { get; set; }
-    public IService Servicee { get; }
+    public IServiceModel Servicee { get; }
 
     public Task AddAsync();
     public Task DeleteAsync();

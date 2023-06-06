@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Service.API;
 namespace Presentation.Model.API
 {
-public interface IServiceModel : Service.API.IService
+public interface IServiceModel
 {
     public abstract class IServiceModel
 {

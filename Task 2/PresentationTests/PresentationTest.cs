@@ -9,7 +9,7 @@ namespace Tests
     [TestClass]
     public class PresentationTests
     {
-        public class MockCustomer : ICustomer
+        public class MockCustomer 
         {
             public int Id { get; set; }
             public string FirstName { get; set; }
@@ -26,7 +26,7 @@ namespace Tests
             }
         }
 
-        public class AnotherMockCustomer : ICustomer
+        public class AnotherMockCustomer
         {
             public int Id { get; set; }
             public string FirstName { get; set; }
@@ -48,7 +48,7 @@ namespace Tests
         public void TestCustomerViewModelWithMockCustomer()
         {
             var mockCustomer = new MockCustomer();
-            var customerViewModel = new CustomerViewModel(mockCustomer);
+            var customerViewModel = new CustomerViewModel((ICustomerModel)mockCustomer);
 
             customerViewModel.Name = "John Doe";
 
@@ -59,7 +59,7 @@ namespace Tests
         public void TestCustomerViewModelWithAnotherMockCustomer()
         {
             var anotherMockCustomer = new AnotherMockCustomer();
-            var customerViewModel = new CustomerViewModel(anotherMockCustomer);
+            var customerViewModel = new CustomerViewModel((ICustomerModel)anotherMockCustomer);
 
             customerViewModel.Name = "Jane Smith";
 

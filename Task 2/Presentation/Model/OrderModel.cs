@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Service.API;
 using Presentation.Model.API;
 
 namespace Presentation.Model
@@ -15,9 +14,9 @@ namespace Presentation.Model
         public int Buy { get; set; }
         public int Sell { get; set; }
         public int UserId { get; set; }
-        public IService Servicee { get; }
+        public IServiceModel Servicee { get; }
         
-        public OrderModel(int Id, int ProductId, int Buy, int Sell, int UserId, IService service)
+        public OrderModel(int Id, int ProductId, int Buy, int Sell, int UserId, IServiceModel service)
         {
             this.Id = Id;
             this.ProductId = ProductId;

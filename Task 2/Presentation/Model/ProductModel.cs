@@ -12,8 +12,8 @@ namespace Presentation.Model
     public int Id { get; set; }
     public string Name { get; set; }
     public double Price { get; set; }
-    public IService Servicee { get; }
-    public ProductModel (int Id, string Name, double Price, IService service)
+    public IServiceModel Servicee { get; }
+    public ProductModel (int Id, string Name, double Price, IServiceModel service)
     {
         this.Id = Id;
         this.Name = Name;

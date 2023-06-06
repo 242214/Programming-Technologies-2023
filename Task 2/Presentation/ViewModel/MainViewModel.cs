@@ -10,7 +10,7 @@ namespace Presentation.ViewModel
 {
     public partial class MainViewModel : ObservableObject
     {
-        private readonly IServiceModel service;
+            private readonly IServiceModel service;
             public CustomerViewModel CustomerVM { get; }
             public OrderViewModel OrderVM { get; }
             public ProductViewModel ProductVM { get; }
@@ -18,7 +18,7 @@ namespace Presentation.ViewModel
 
             public MainViewModel(ICustomerModel customer, IOrderModel order, IProductModel product, IStateModel state)
             {
-            service = IServiceModel.Create();
+                service = IServiceModel.Create();
                 CustomerVM = new CustomerViewModel(customer);
                 OrderVM = new OrderViewModel(order);
                 ProductVM = new ProductViewModel(product);

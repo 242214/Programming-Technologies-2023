@@ -3,17 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Service.API;
 
 namespace Presentation.Model.API
 {
-    public interface IStateModel : Service.API.IState
+    public interface IStateModel
     {
         public int Id { get; set; }
         public int ProductId { get; set;  }
         public int Amount { get; set; }
         public bool isAvailable { get; set; }
-        public IService Servicee { get; }
+        public IServiceModel Servicee { get; }
 
         public Task AddAsync();
         public Task DeleteAsync();
