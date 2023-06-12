@@ -18,6 +18,7 @@ internal class CustomerModel : ICustomerModel
         this.Id = Id;
         this.FirstName = FirstName;
         this.LastName = LastName;
+        this.service = service;
     }
 
     public async Task AddAsync()

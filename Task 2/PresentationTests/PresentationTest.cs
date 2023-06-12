@@ -9,12 +9,20 @@ namespace Tests
     [TestClass]
     public class PresentationTests
     {
-        public class MockCustomer 
+        public class MockCustomer : ICustomerModel
         {
             public int Id { get; set; }
             public string FirstName { get; set; }
             public string LastName { get; set; }
-
+            public IServiceModel service { get; }
+            public MockCustomer(IServiceModel service, int Id, string FirstName, string LastName)
+            {
+                this.Id = Id;
+                this.FirstName = FirstName;
+                this.LastName = LastName;
+                this.service = service;
+            }
+            public MockCustomer() { }
             public Task AddAsync()
             {
                 return Task.CompletedTask;
@@ -26,12 +34,20 @@ namespace Tests
             }
         }
 
-        public class AnotherMockCustomer
+        public class AnotherMockCustomer : ICustomerModel
         {
             public int Id { get; set; }
             public string FirstName { get; set; }
             public string LastName { get; set; }
-
+            public IServiceModel service { get; }
+            public AnotherMockCustomer(IServiceModel service, int Id, string FirstName, string LastName)
+            {
+                this.Id = Id;
+                this.FirstName = FirstName;
+                this.LastName = LastName;
+                this.service = service;
+            }
+            public AnotherMockCustomer() { }
             public Task AddAsync()
             {
                 return Task.CompletedTask;

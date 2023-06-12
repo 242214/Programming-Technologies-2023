@@ -18,7 +18,6 @@ namespace Presentation.ViewModel
 
             public MainViewModel(ICustomerModel customer, IOrderModel order, IProductModel product, IStateModel state)
             {
-                service = IServiceModel.Create();
                 CustomerVM = new CustomerViewModel(customer);
                 OrderVM = new OrderViewModel(order);
                 ProductVM = new ProductViewModel(product);
